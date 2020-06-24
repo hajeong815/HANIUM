@@ -3,8 +3,11 @@ package com.HANIUM.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.HANIUM.vo.InspectionVO;
 
+@Service
 public class InspectionServiceImpl implements InspectionService {
 
 	@Override
