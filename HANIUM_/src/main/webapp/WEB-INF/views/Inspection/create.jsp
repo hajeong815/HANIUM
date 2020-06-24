@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
-	<head>
+<head>
 	
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	
 <meta charset="UTF-8">
-<title>기술적 보안조치항목 조회</title>
+<title>기술적 보안조치항목 등록</title>
 </head>
 <body>
 
