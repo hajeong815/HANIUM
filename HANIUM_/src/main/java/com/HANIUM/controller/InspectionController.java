@@ -31,8 +31,8 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String inspectionInsert(@RequestParam HashMap<String, String> paramMap) {
-		
+	public String inspectionInsert() {
+		//@RequestParam HashMap<String, String> paramMap
 		return "inspection/create";
 	}
 	
