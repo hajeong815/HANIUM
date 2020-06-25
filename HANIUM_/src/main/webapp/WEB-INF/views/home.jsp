@@ -9,7 +9,7 @@
 <h1>
 	메인페이지
 </h1>
-
+<!-- jj -->
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
