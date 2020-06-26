@@ -82,15 +82,15 @@
 						<th>점검 내용</th><th>대안 조치 내용</th><th>보안성평가 여부(y/n)</th>
 						</tr>
 						
-						<c:forEach items="${getInspectionList}" var = "getInspectionList">
+						<c:forEach items="${list}" var = "vo">
 							<tr>
-								<td><c:out value="${getInspectionList.id}" /></td>
-								<td><c:out value="${getInspectionList.Cda_mapping}" /></td>
-								<td><c:out value="${getInspectionList.Inspect_group}" /></td>
-								<td><c:out value="${getInspectionList.Inspect_group_list}" /></td>
-								<td><c:out value="${getInspectionList.Inspect_checklist}" /></td>
-								<td><c:out value="${getInspectionList.Inspect_yn}" /></td>
-								<td><c:out value="${getInspectionList.Alter_measure}" /></td> 
+								<td><c:out value="${vo.id}" /></td>
+								<td><c:out value="${vo.cda_mapping}" /></td>
+								<td><c:out value="${vo.inspect_group}" /></td>
+								<td><c:out value="${vo.inspect_group_list}" /></td>
+								<td><c:out value="${vo.inspect_checklist}" /></td>
+								<td><c:out value="${vo.alter_measure}" /></td>
+								<td><c:out value="${vo.inspect_yn}" /></td> 
 							</tr>
 						</c:forEach>
 						
@@ -122,7 +122,7 @@
   				
   				<!-- 등록버튼(모달창) -->
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float: right;">
-				  기술적 보안조치 항목 등록
+				   등록
 				</button>
 				
 				<!-- Modal -->
@@ -130,13 +130,13 @@
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLabel">기술적 보안조치항목 등록</h5>
+				        <h5 class="modal-title" id="exampleModalLabel">기술적 보안조치 항목 등록</h5>
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
 				        </button>
 				      </div>
 				      <div class="modal-body">
-				        <!-- %@include file="create.jsp" %-->
+				        <%@include file="create.jsp" %>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -144,8 +144,7 @@
 				      </div>
 				    </div>
 				  </div>
-				</div>	
-			</nav>		
+				</div>		
 
 	<hr />
 	</div>

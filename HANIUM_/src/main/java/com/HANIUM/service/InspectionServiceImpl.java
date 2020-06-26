@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.HANIUM.dao.InspectionDAO;
 import com.HANIUM.vo.InspectionVO;
+import com.HANIUM.vo.StandardCodeVO;
+import com.HANIUM.vo.StandardsVO;
 
 @Service
 public class InspectionServiceImpl implements InspectionService {
@@ -25,7 +27,16 @@ public class InspectionServiceImpl implements InspectionService {
 	@Override
 	public void insertInspection(HashMap<String, String> paramMap) {
 		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public List<StandardsVO> getInsGroupFromStandard() {
+		return inspectionDao.getInsGroupFromStandard();
+	}
+
+	@Override
+	public List<StandardCodeVO> getInsGroupListFromStandard(int upper_type_no) {
+		return inspectionDao.getInsGroupListFromStandard(upper_type_no);
 	}
 
 }

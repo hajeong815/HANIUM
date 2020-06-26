@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.HANIUM.vo.InspectionVO;
+import com.HANIUM.vo.StandardCodeVO;
+import com.HANIUM.vo.StandardsVO;
 
 @Repository
 public class InspectionDAOImpl implements InspectionDAO{
@@ -25,6 +27,16 @@ public class InspectionDAOImpl implements InspectionDAO{
 	public void insertInspection(HashMap<String, String> paramMap) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<StandardsVO> getInsGroupFromStandard() {
+		return sqlSession.selectList("inspectionMapper.getInsGroupFromStandard");
+	}
+
+	@Override
+	public List<StandardCodeVO> getInsGroupListFromStandard(int upper_type_no) {
+		return sqlSession.selectList("inspectionMapper.getInsGroupListFromStandard", upper_type_no);
 	}
 
 }
