@@ -8,7 +8,7 @@
 
 <body>
 
-<form method="post" action="/inspection/list.jsp">
+<form method="post" action="">
 
 <div class="input-group" style="margin-bottom=10px">
 	<span class="input-group-addon" id="basic-addon1" style="width:120px;"><b>CDA 유형 매핑</b></span>

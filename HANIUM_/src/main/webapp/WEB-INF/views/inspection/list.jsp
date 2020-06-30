@@ -9,16 +9,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	
+		
 <meta charset="UTF-8">
 <title>기술적 보안조치항목 조회</title>
 </head>
+
 <body>
 	
 	<div>
@@ -54,18 +54,22 @@
 					</div>
 					  
   
-					    <span class="input-group-addon" id="basic-addon1">점검 항목</span>
+					 <span class="input-group-addon" id="basic-addon1">점검 분류</span>
 					<div class="btn-group">
-					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    선택 <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="#">계정 관리</a></li>
-					    <li><a href="#">접근권한 관리</a></li>
-					    <li><a href="#">비밀번호 관리</a></li>
-					    <li><a href="#">로그 관리</a></li>
-					    <li><a href="#">데이터 암호화</a></li>
-					  </ul>
+					  <select name="insGroup"  style="height:30px;" onchange="categoryChange(this)">
+					       <c:forEach var="group" items="${groupList}">
+					           <option value="${group.code_type_no}">${group.code_type_name}</option>
+					       </c:forEach>
+					   </select>
+					  
+					</div>
+					
+					<span class="input-group-addon" id="basic-addon1">점검 항목</span>
+					<div class="btn-group">
+					  <select id="insItem"  style="height:30px;">
+
+					   </select>
+					  
 					</div>
 										
 		</div>
@@ -78,8 +82,10 @@
 				<form role="form" method="get">
 					<table class="table table-hover">
 						<tr>
-						<th>no</th><th>CDA 유형</th><th>보안 영역</th><th>점검 분야</th>
-						<th>점검 내용</th><th>대안 조치 내용</th><th>보안성평가 여부(y/n)</th>
+							<th>no</th><th>CDA 유형</th><th width="100">점검 분류</th>
+							<th class="col-md-2">점검 항목명</th>
+							<th>점검 상세 내용</th>
+							<th class="col-md-4">대안 조치 내용</th>
 						</tr>
 						
 						<c:forEach items="${list}" var = "vo">
@@ -90,7 +96,6 @@
 								<td><c:out value="${vo.inspect_group_list}" /></td>
 								<td><c:out value="${vo.inspect_checklist}" /></td>
 								<td><c:out value="${vo.alter_measure}" /></td>
-								<td><c:out value="${vo.inspect_yn}" /></td> 
 							</tr>
 						</c:forEach>
 						
@@ -150,4 +155,20 @@
 	</div>
 
 </body>
+
+<script>
+function categoryChange(e) {
+	var target = document.getElementById("insItem");
+	
+	target.options.length = 0;
+	
+	<c:forEach var="group" items="${groupList}">
+		var opt = document.createElement("option");
+		opt.value = '${group.code_type_no}';
+		opt.innerHTML = '${group.code_type_name}';
+		target.appendChild(opt);
+	</c:forEach>
+}
+</script>
+
 </html>
