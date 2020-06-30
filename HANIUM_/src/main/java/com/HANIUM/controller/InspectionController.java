@@ -39,18 +39,11 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		// getInsGroupFromStandard()
 		List<StandardsVO> standardsVoList = new ArrayList<StandardsVO>();
 		standardsVoList = inspectService.getInsGroupFromStandard();
-		
-		for (int i = 0; i < standardsVoList.size(); i++) {
-			StandardsVO vo1 = new StandardsVO();
-			vo1 = standardsVoList.get(i);
-			System.out.println("getCode_type_no = " + vo1.getCode_type_no());
-			System.out.println("getCode_type_name = " + vo1.getCode_type_name());
-		}
-		
 		model.addAttribute("groupList", standardsVoList);
 	
-		// 
-		int upper_type_no = 1;
+		StandardsVO vo = new StandardsVO();
+		vo = standardsVoList.get(0);
+		int upper_type_no = vo.getUpper_code_type_no();
 		
 		// 3. 점검분야 getList() -> addAttribute
 		// getInsGroupListFromStandard()
