@@ -54,9 +54,6 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		for (int i = 0; i < standardCodeVoList.size(); i++) {
 			StandardCodeVO vo1 = new StandardCodeVO();
 			vo1 = standardCodeVoList.get(i);
-			System.out.println(vo1.getStandard_code());
-			System.out.println(vo1.getUpper_standard_code());
-			System.out.println(vo1.getCode_name());
 		}
 		
 
