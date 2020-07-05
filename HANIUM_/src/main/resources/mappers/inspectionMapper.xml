@@ -16,13 +16,11 @@
 		WHERE UPPER_CODE_TYPE_NO = 1
 	</select>
 	
-	<!-- get 기술적 보안조치 점검분야  -->
-	<select id="getInsGroupListFromStandard" parameterType="int" resultType="com.HANIUM.vo.StandardCodeVO">
-		SELECT ss.id, ss.STANDARD_CODE, ss.CODE_TYPE_NO, ss.CODE_NAME, ss.UPPER_STANDARD_CODE
-		FROM StandardCode ss JOIN Standards s
-		ON ss.CODE_TYPE_NO = s.CODE_TYPE_NO
+	<select id="getInsGroupListFromStandard" parameterType="int" resultType="com.HANIUM.vo.StandardInsVO">
+		SELECT i.id, i.CODE_TYPE_NO, i.ITEM, i.CONTENT 
+		FROM Standards s JOIN StandardIns i
+		ON s.CODE_TYPE_NO = i.CODE_TYPE_NO
 		WHERE s.UPPER_CODE_TYPE_NO = #{upper_type_no}
-		AND ss.UPPER_STANDARD_CODE IS NOT NULL
 	</select>
    
 </mapper>

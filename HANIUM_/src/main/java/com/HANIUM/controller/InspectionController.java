@@ -1,6 +1,7 @@
 package com.HANIUM.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.HANIUM.service.InspectionService;
 import com.HANIUM.vo.InspectionVO;
-import com.HANIUM.vo.StandardCodeVO;
+import com.HANIUM.vo.StandardInsVO;
 import com.HANIUM.vo.StandardsVO;
 
 
@@ -34,9 +36,9 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		inspectVoList = inspectService.getInspectionList();
 		model.addAttribute("list", inspectVoList);	
 		
-		// 1. CDA 유형 getList() -> addAttribute
-		// 2. 보안영역 getList() -> addAttribute (Standards = 1)
-		// getInsGroupFromStandard()
+		
+		
+		// CREATE
 		List<StandardsVO> standardsVoList = new ArrayList<StandardsVO>();
 		standardsVoList = inspectService.getInsGroupFromStandard();
 		model.addAttribute("groupList", standardsVoList);
@@ -45,25 +47,31 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		vo = standardsVoList.get(0);
 		int upper_type_no = vo.getUpper_code_type_no();
 		
-		// 3. 점검분야 getList() -> addAttribute
-		// getInsGroupListFromStandard()
-		List<StandardCodeVO> standardCodeVoList = new ArrayList<StandardCodeVO>();
-		standardCodeVoList = inspectService.getInsGroupListFromStandard(upper_type_no);
-		System.out.println(standardCodeVoList);
+		// 점검항목명 
+		List<StandardInsVO> stInsVoList = new ArrayList<StandardInsVO>();
+		stInsVoList = inspectService.getInsGroupListFromStandard(upper_type_no);
 		
-		for (int i = 0; i < standardCodeVoList.size(); i++) {
-			StandardCodeVO vo1 = new StandardCodeVO();
-			vo1 = standardCodeVoList.get(i);
-		}
+//		for (int i = 0; i < stInsVoList.size(); i++) {
+//			StandardInsVO voo = new StandardInsVO();
+//			voo = stInsVoList.get(i);
+//			System.out.println(voo.getContent());
+//			
+//		}
 		
-
+		model.addAttribute("insList", stInsVoList);
+		
 		return "inspection/list";
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String inspectionInsert() {
+	public String inspectionInsert(@RequestParam HashMap<String, Object> paramMap) {
+		System.out.println("::::inspectionInsert::::");
+		System.out.println("::::inspectionInsert::::");
+		
+		System.out.println(paramMap);
+		
 		//@RequestParam HashMap<String, String> paramMap
-		return "inspection/create";
+		return "inspection/list";
 	}
 	
 

@@ -56,7 +56,8 @@
   
 					 <span class="input-group-addon" id="basic-addon1">점검 분류</span>
 					<div class="btn-group">
-					  <select name="insGroup"  style="height:30px;" onchange="categoryChange(this)">
+					  <select id="groupList" name="groupList"  style="height:30px;" onchange="categoryChange(this)">
+							<option value="" selected>점검 분류 선택</option>
 					       <c:forEach var="group" items="${groupList}">
 					           <option value="${group.code_type_no}">${group.code_type_name}</option>
 					       </c:forEach>
@@ -66,9 +67,9 @@
 					
 					<span class="input-group-addon" id="basic-addon1">점검 항목</span>
 					<div class="btn-group">
-					  <select id="insItem"  style="height:30px;">
-
-					   </select>
+						 <select id="insSelectList" name="insSelectList" style="width:440px; height:30px;" onchange="showDetail(this)">
+						  <option value="" >점검 항목명</option>
+						</select>
 					  
 					</div>
 										
@@ -143,10 +144,7 @@
 				      <div class="modal-body">
 				        <%@include file="create.jsp" %>
 				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-primary">Save changes</button>
-				      </div>
+				      
 				    </div>
 				  </div>
 				</div>		
@@ -157,18 +155,45 @@
 </body>
 
 <script>
+
+function showDetail(e) {
+	console.log(e);
+	
+	<c:forEach var="vo" items="${insList}">
+		var sel = document.getElementById("insSelectList");
+		var selectedVal = sel.options[sel.selectedIndex].value;
+		var voVal = ${vo.id};
+		
+		if (selectedVal == voVal) {
+			document.getElementById("detailInput").innerHTML = '${vo.content}';
+		}
+	</c:forEach>
+}
+
+
 function categoryChange(e) {
-	var target = document.getElementById("insItem");
+	var target = document.getElementById("insSelectList");
 	
 	target.options.length = 0;
 	
-	<c:forEach var="group" items="${groupList}">
-		var opt = document.createElement("option");
-		opt.value = '${group.code_type_no}';
-		opt.innerHTML = '${group.code_type_name}';
-		target.appendChild(opt);
+	<c:forEach var="vo" items="${insList}" varStatus="status">
+		var sel = document.getElementById("groupList");
+		var selectedVal = sel.options[sel.selectedIndex].value;
+		var voVal = ${vo.code_type_no};
+		
+		if (selectedVal == voVal) {
+			var opt = document.createElement("option");
+			opt.value = '${vo.id}';
+			opt.innerHTML = '${vo.item}';
+			target.appendChild(opt);
+		}
+		
+		<c:if test="${status.first}">
+			document.getElementById("detailInput").innerHTML = '${vo.content}';
+		</c:if>
 	</c:forEach>
 }
+
 </script>
 
 </html>
