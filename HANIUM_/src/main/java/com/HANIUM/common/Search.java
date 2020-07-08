@@ -1,20 +1,12 @@
-package com.HANIUM.vo;
+package com.HANIUM.common;
 
-public class InspectionVO {
-	private int id;
+public class Search {
 	private String cda_mapping;
 	private String inspect_group;
 	private String inspect_group_list;
-	private String alter_measure;
 	
-	public InspectionVO() {}
+	public Search() {}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getCda_mapping() {
 		return cda_mapping;
 	}
@@ -33,10 +25,6 @@ public class InspectionVO {
 	public void setInspect_group_list(String inspect_group_list) {
 		this.inspect_group_list = inspect_group_list;
 	}
-	public String getAlter_measure() {
-		return alter_measure;
-	}
-	public void setAlter_measure(String alter_measure) {
-		this.alter_measure = alter_measure;
-	}
+	
+	
 }

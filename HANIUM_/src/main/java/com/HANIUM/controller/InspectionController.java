@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.HANIUM.common.Search;
 import com.HANIUM.service.InspectionService;
+import com.HANIUM.vo.InspectionResultVO;
 import com.HANIUM.vo.InspectionVO;
 import com.HANIUM.vo.StandardInsVO;
 import com.HANIUM.vo.StandardsVO;
@@ -29,16 +31,26 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 	InspectionService inspectService;
 
 	@RequestMapping(value = "/list")
-	public String getInspectionList(Model model) throws Exception{
-		logger.info("list");
-	
-		List<InspectionVO> inspectVoList = new ArrayList<InspectionVO>();
-		inspectVoList = inspectService.getInspectionList();
-		model.addAttribute("list", inspectVoList);	
+	public String getInspectionList(Model model
+			, @RequestParam(required=false) String cda_mapping
+			, @RequestParam(required=false) String inspect_group
+			, @RequestParam(required=false) String inspect_group_list) throws Exception{
+		logger.info("getInspectionList::::");
+		logger.info("cda_mapping = " + cda_mapping + " inspect_group = " + inspect_group
+					+ " inspect_group_list = " + inspect_group_list);
 		
+		// 검색 객체 생성
+		Search search = new Search();
+		search.setCda_mapping(cda_mapping);
+		search.setInspect_group(inspect_group);
+		search.setInspect_group_list(inspect_group_list);
 		
+		// 기술적 보안조치항목 리스트
+		List<InspectionResultVO> iresultvoList = new ArrayList<InspectionResultVO>();
+		iresultvoList = inspectService.getInspectionResultList(search);
+		model.addAttribute("list", iresultvoList);	
 		
-		// CREATE
+		// 점검 분류
 		List<StandardsVO> standardsVoList = new ArrayList<StandardsVO>();
 		standardsVoList = inspectService.getInsGroupFromStandard();
 		model.addAttribute("groupList", standardsVoList);
@@ -68,11 +80,28 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		System.out.println("::::inspectionInsert::::");
 		System.out.println("::::inspectionInsert::::");
 		
-		System.out.println(paramMap);
+		logger.info(paramMap.toString());
+		//{inspect_group=10, inspect_group_list=2, alter_measure=test}
+		inspectService.insertInspection(paramMap);
 		
-		//@RequestParam HashMap<String, String> paramMap
-		return "inspection/list";
+		
+		return "redirect:/inspection/list";
 	}
 	
-
+	@RequestMapping(value = "/search")
+	public String inspectionSearch(@RequestParam HashMap<String, String> paramMap, Model model) {
+		logger.info("inspectionSearch::::");
+		logger.info(paramMap.toString());
+		
+		String inspect_group = paramMap.get("inspect_group");
+		logger.info(inspect_group);
+		
+		if (inspect_group == "") {
+			logger.info("갈갈갈");
+		}
+		
+		model.addAttribute("test", "test!!");
+		
+		return "redirect:/inspection/list";
+	}
 }

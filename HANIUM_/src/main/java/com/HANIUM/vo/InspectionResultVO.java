@@ -1,14 +1,21 @@
 package com.HANIUM.vo;
 
-public class InspectionVO {
+public class InspectionResultVO {
 	private int id;
 	private String cda_mapping;
 	private String inspect_group;
 	private String inspect_group_list;
 	private String alter_measure;
+	private String content;
 	
-	public InspectionVO() {}
+	public InspectionResultVO() {}
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getId() {
 		return id;
 	}

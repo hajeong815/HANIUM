@@ -4,8 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="inspectionMapper">
 
+	<select id="getInspectionResultList" resultType="com.HANIUM.vo.InspectionResultVO">
+		SELECT i.id, i.Cda_mapping, st.CODE_TYPE_NAME AS inspect_group,
+		 si.ITEM AS inspect_group_list, si.CONTENT, i.Alter_measure
+		FROM InspectionList i 
+			INNER JOIN Standards st ON i.Inspect_group = st.CODE_TYPE_NO
+		    INNER JOIN StandardIns si ON i.Inspect_group_list = si.ID
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="cda_mapping != null and cda_mapping != ''">
+				Cda_mapping = #{cda_mapping} 
+				<if test="inspect_group != ''">
+					AND i.Inspect_group = #{inspect_group} AND i.Inspect_group_list = #{inspect_group_list}
+				</if>
+			</if>
+		</trim>
+		GROUP BY i.id;
+	</select>
+
 	<select id="getInspectionList" resultType="com.HANIUM.vo.InspectionVO">
-		SELECT `id`, `Cda_mapping`, `Inspect_group`, `Inspect_group_list`, `Inspect_checklist`, `Inspect_yn`, `Alter_measure`
+		SELECT id, Cda_mapping, Inspect_group, Inspect_group_list, Alter_measure
 		FROM InspectionList
 	</select>
 	
@@ -22,5 +39,11 @@
 		ON s.CODE_TYPE_NO = i.CODE_TYPE_NO
 		WHERE s.UPPER_CODE_TYPE_NO = #{upper_type_no}
 	</select>
+	
+	<insert id="insertInspection" parameterType="java.util.HashMap">
+		INSERT INTO InspectionList
+		(Cda_mapping, Inspect_group, Inspect_group_list, Alter_measure)
+		VALUES (#{cda_mapping}, #{inspect_group}, #{inspect_group_list}, #{alter_measure})
+	</insert>
    
 </mapper>
