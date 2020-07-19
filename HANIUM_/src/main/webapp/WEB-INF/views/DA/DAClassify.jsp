@@ -15,7 +15,6 @@
 						
 		    </select>	
 		    
-		
 		<span class="input-group-addon" id="basic-addon1">필수 시스템명</span>
 			<select id="ifDigital" name="if_Digital" style="height:30px; width:250px;">
 						

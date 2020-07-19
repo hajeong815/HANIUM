@@ -19,7 +19,6 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 	
 	@Inject
 	SystemService service;
-
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{

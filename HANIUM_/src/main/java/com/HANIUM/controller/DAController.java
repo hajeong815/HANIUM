@@ -20,7 +20,6 @@ private static final Logger logger = LoggerFactory.getLogger(DAController.class)
 	@Inject
 	SystemService service;
 
-	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		logger.info("list");
