@@ -71,10 +71,10 @@
           <table class="table table-hover">
              <tr>
                 <th>no</th>
-                <th class="col-md-1">CDA 유형</th>
+                <th class="col-md-0.5">CDA 유형</th>
                 <th class="col-md-1">점검 분류</th>
                 <th class="col-md-2">점검 항목명</th>
-                <th class="col-md-3">점검 상세 내용</th>
+                <th class="col-md-3.5">점검 상세 내용</th>
                 <th class="col-md-4">대안 조치 내용</th>
              </tr>
              

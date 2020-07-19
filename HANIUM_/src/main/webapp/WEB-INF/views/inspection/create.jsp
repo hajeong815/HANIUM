@@ -43,14 +43,14 @@
 	<div class="input-group">
 	  <span class="input-group-addon" id="basic-addon1" style="width:120px"><b>점검 상세 내용</b></span>
 	  <div class="btn-group">
-	  	<div id="detailInput2" style="width:440px; height:50px">
+	  	<div id="detailInput2" style="width:440px; height:70px; border:1px solid;">
 	  	
 	  	</div>
 		</div>
 	</div>
 	<div class="input-group">
 	  <span class="input-group-addon" id="basic-addon1" style="width:120px"><b>대안 조치 내용</b></span>
-	<input type="text" name="alter_measure" class="form-control" aria-describedby="basic-addon1" style="width:440px; height:200px">
+	  <textarea class="form-control" name="alter_measure" aria-describedby="basic-addon1" style="width:440px; height:200px; overflow: scroll; word-wrap: break-word;" ></textarea>
 	</div>
 	<div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
