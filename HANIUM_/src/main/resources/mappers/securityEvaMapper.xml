@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="securityMapper">
+
+	<select id="list" resultType="com.HANIUM.vo.DAVO" parameterType="java.util.HashMap">
+		SELECT `id`, `CRI_SYSTEM_NO`, `DA_CODE`, `DA_NAME`, `DA_FUNCTION`, `DA_COMM`, `DA_SUPPORT_FUNC`, `DA_FUNC_TYPE_CODE`, `SAFETY_LEVEL_CODE`, `DIGITAL_OR_NOT_CODE`
+			,`CYBER_ATTACK_CODE`, `COMM_FUNC_CODE`, `STORAGE_CODE`, `HMI_CON_CODE`, `HMI_CHANGE_CODE`, `IS_CRITICAL`, `CDA_TYPE`
+			
+		FROM DAList;
+	</select>
+	
+		<select id="getSecurityEva" resultType="com.HANIUM.vo.SecurityEvaVO" parameterType="java.util.HashMap">
+		SELECT `CDA_CODE`, `EVA_DONE_YN`, `CONTENT`, `COMMENT`, `PERIOD`
+		FROM SecurityEva;
+	</select>
+	
+	
+	
+</mapper>
+<!-- CRI_SYSTEM_NO int(11) 
+DA_CODE varchar(35) 
+DA_NAME varchar(7) 
+DA_FUNCTION text 
+DA_COMM int(11) 
+DA_SUPPORT_FUNC int(11) 
+DA_FUNC_TYPE_CODE int(11) 
+SAFETY_LEVEL_CODE int(11) 
+DIGITAL_OR_NOT_CODE int(11) 
+CYBER_ATTACK_CODE int(11) 
+COMM_FUNC_CODE int(11) 
+STORAGE_CODE int(11) 
+HMI_CON_CODE int(11) 
+HMI_CHANGE_CODE int(11) 
+IS_CRITICAL int(11) 
+CDA_TYPE
+
+
+id int(11) AI PK 
+CDA_CODE varchar(35) 
+EVA_DONE_YN int(1) 
+CONTENT text 
+COMMENT text 
+PERIOD int(11) -->

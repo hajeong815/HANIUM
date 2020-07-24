@@ -6,7 +6,6 @@
 
 	<select id="list" resultType="com.HANIUM.vo.SystemVO">
 		SELECT `id`, `system_CODE`, `system_NAME`, `system_FUNCTION`, `system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`
-			
 		FROM SystemList;
 	</select>
 	

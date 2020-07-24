@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.HANIUM.service.SystemService;
+import com.HANIUM.service.DAService;
 
 @Controller
 @RequestMapping("/DA/*")
@@ -18,7 +18,7 @@ public class DAController {
 private static final Logger logger = LoggerFactory.getLogger(DAController.class);
 	
 	@Inject
-	SystemService service;
+	DAService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{

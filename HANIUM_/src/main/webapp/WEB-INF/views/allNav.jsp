@@ -11,6 +11,7 @@
             <li><a href="/system/list">산업제어시스템</a></li>
             <li><a href="/DA/list">디지털자산</a></li>
             <li><a href="/inspection/list">기술적 보안조치</a></li>
+            <li><a href="/security/list">기술적 보안성 평가</a></li>
 
           </ul>
         </nav>
