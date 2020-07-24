@@ -156,6 +156,13 @@
             <version>${org.springframework-version}</version>
             <scope>test</scope>
         </dependency>
+        
+        <!-- Json 파싱 라이브러리 -->
+        <dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180130</version>
+		</dependency>
 		    
 	</dependencies>
     <build>
