@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reportMapper">
+
+	 <select id="list" resultType="com.HANIUM.vo.ReportVO" >
+		SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
+			
+		FROM ReportList
+		trim <trim prefix="WHERE" prefixOverrides="AND|OR">
+	      <if test="content != '' and content != null ">
+	      		AND content like CONCAT('%', "#{content}", '%')
+	      </if>
+	      <if test="measure_content != '' and measure_content != null ">
+	          AND measure_content like CONCAT('%', "#{measure_content}", '%')
+	      </if>
+      </trim>
+	</select>
+	
+	<!-- 
+	<select id="list" resultType="com.HANIUM.vo.ReportVO" parameterType="java.util.HashMap">
+		SELECT id, CDA_CODE, NONCON_INS_ID, SOLUTION, NONCON_PERIOD
+			
+		FROM Nonconfirm
+	</select>
+	 -->
+	 
+	<!-- <select id="getReportList" resultType="com.HANIUM.vo.ReportVO">
+      SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
+      FROM ReportList
+      trim <trim prefix="WHERE" prefixOverrides="AND|OR">
+	      <if test="content != '' and content != null ">
+	      		AND content like CONCAT('%', "#{content}", '%')
+	      </if>
+	      <if test="measure_content != '' and measure_content != null ">
+	          AND measure_content like CONCAT('%', "#{measure_content}", '%')
+	      </if>
+      </trim>	 
+   </select>
+    -->
+	
+	<update id="updates" parameterType="com.HANIUM.vo.ReportVO" >
+		UPDATE ReportList
+		   <set> 
+		   	<if test=" period != null and period != ''">period  =  #{period},</if>
+		   	<if test=" content != null and content != ''">content  =  #{content},</if>
+		   	<if test=" measure_content != null and measure_content != ''">measure_content  =  #{measure_content}</if>
+		   </set>
+		 WHERE bno = #{bno}
+	</update>
+	
+	<update id="update" parameterType="com.HANIUM.vo.ReportVO">
+
+		   UPDATE ReportList
+		   SET period = #{period}
+		   		,content = #{content}
+		   		,measure_content = # {measure_content}
+		   WHERE
+		         bno=#{bno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  	FROM ReportList
+		 WHERE bno = #{bno}		
+	</delete>
+	
+	<!-- 부적합 보고서 아이템 상세 조회  -->
+	<select id="read" parameterType="int" resultType="com.HANIUM.vo.ReportVO" >
+		SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
+		
+		FROM ReportList
+		WHERE bno = #{bno}
+	</select>
+	
+
+	
+	<select id="getListModal" resultType="com.HANIUM.vo.ReportVO" parameterType="String">
+		SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
+			
+		FROM ReportList
+		WHERE cda_name = #{cda_name}
+	</select>
+	
+	
+</mapper>
