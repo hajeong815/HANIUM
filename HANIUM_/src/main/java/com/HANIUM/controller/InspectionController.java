@@ -40,7 +40,7 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		List<StandardsVO> standardsVoList = new ArrayList<StandardsVO>();
 		standardsVoList = inspectService.getInsGroupFromStandard();
 		model.addAttribute("groupList", standardsVoList);
-		
+	
 		StandardsVO vo = new StandardsVO();
 		vo = standardsVoList.get(0);
 		int upper_type_no = vo.getUpper_code_type_no();
