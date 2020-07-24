@@ -6,6 +6,6 @@ import com.HANIUM.vo.DAVO;
 
 public interface DAService {
 	public List<DAVO> list() throws Exception;
-	public List<DAVO> CDAlist() throws Exception;
+	void DAInsert(DAVO vo);
 
 }

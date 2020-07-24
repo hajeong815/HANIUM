@@ -19,21 +19,22 @@ public class DADAOImpl implements DADAO{
 	@Override
 	public List<DAVO> list() throws Exception {
 	
-		return sqlSession.selectList("securityEvaMapper.list");
+		return sqlSession.selectList("DAMapper.list");
 
 	}
 	
 	@Override
-	public List<DAVO> CDAlist() throws Exception{
+	public void DAInsert(DAVO vo) {
+		sqlSession.insert("DAMapper.insertDA", vo);
 
-		return sqlSession.selectList("securityEvaMapper.CDAlist");
 	}
 
-	
-	  @Override public void item(HashMap<String, Object> paramMap) { 
-		  // TODO Auto-generated method stub
-	  
-	  }
+	@Override
+	public void insertDA(String DA_name, DAVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	 
 
 }

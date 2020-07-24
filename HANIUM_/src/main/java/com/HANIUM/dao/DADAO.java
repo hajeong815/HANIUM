@@ -7,8 +7,10 @@ import com.HANIUM.vo.DAVO;
 
 public interface DADAO {
 	public List<DAVO> list() throws Exception;
-	public List<DAVO> CDAlist() throws Exception;
+
 	
-	public void item(HashMap<String, Object> paramMap);
+	void DAInsert(DAVO vo);
+	public void insertDA(String DA_name, DAVO vo);
+
 	
 }

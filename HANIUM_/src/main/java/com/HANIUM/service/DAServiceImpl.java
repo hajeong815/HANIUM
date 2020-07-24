@@ -23,8 +23,9 @@ public class DAServiceImpl implements DAService{
 	}
 	
 	@Override
-	public List<DAVO> CDAlist() throws Exception{
-		
-		return dao.CDAlist();
+	public void DAInsert(DAVO vo) {
+		dao.insertDA("DAMapper.insertDA", vo);
+
 	}
+
 }

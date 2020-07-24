@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAMapper">
+
+	<select id="list" resultType="com.HANIUM.vo.DAVO" parameterType="java.util.HashMap">
+		SELECT `id`, `CRI_SYSTEM_NO`, `DA_CODE`, `DA_NAME`, `DA_FUNCTION`, `DA_COMM`, `DA_SUPPORT_FUNC`, `DA_FUNC_TYPE_CODE`, `SAFETY_LEVEL_CODE`, `DIGITAL_OR_NOT_CODE`
+			,`CYBER_ATTACK_CODE`, `COMM_FUNC_CODE`, `STORAGE_CODE`, `HMI_CON_CODE`, `HMI_CHANGE_CODE`, `IS_CRITICAL`, `CDA_TYPE`
+			
+		FROM DAList;
+	</select>
+	
+	</mapper>

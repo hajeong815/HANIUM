@@ -1,6 +1,10 @@
 package com.HANIUM.controller;
 
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.HANIUM.service.DAService;
 
@@ -30,4 +36,20 @@ private static final Logger logger = LoggerFactory.getLogger(DAController.class)
 		return "DA/list";
 		
 	}
+	
+	
+	@SuppressWarnings("unlikely-arg-type")
+	@RequestMapping(value = "/check", method = RequestMethod.POST)
+	@ResponseBody
+	public void CDACheck(HttpServletResponse response, @RequestParam(value = "valueArrDA[]") List<String> valueArr) throws Exception{
+	    for(int i = 0 ; i<valueArr.size(); i++) {
+	    	if(valueArr.get(i).equals('X')) {
+	    		response.setContentType("text/html; charset=UTF-8");
+	    		PrintWriter out = response.getWriter();
+	    		out.println("<script>alert('CDA ƴմϴ.'); location.href='list.jsp';</script>");
+	    		out.flush();
+	    	}
+	    }
+	}
+
 }

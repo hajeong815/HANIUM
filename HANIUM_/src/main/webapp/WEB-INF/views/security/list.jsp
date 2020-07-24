@@ -90,7 +90,7 @@
 							<td><c:out value="${list.DA_FUNCTION}" /></td>
 							<td><a href="itemList?cda_type=${list.CDA_TYPE}&cda_name=${list.DA_NAME}&cda_code=${list.DA_CODE}" >조회</a>
 								/
-								<a href="#" class="itemlistlink">등록</a><td>
+								<a href="<%=request.getContextPath()%>/security/insertForm?id=${list.id}">등록</a><td>
 
 		                </tr>
 		             </c:forEach>

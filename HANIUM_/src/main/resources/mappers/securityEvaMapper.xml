@@ -16,6 +16,34 @@
 		FROM SecurityEva;
 	</select>
 	
+		<select id="getInsAlterList" parameterType="String" resultType="com.HANIUM.vo.InspectionResultVO">
+	SELECT i.id, i.Cda_mapping, st.CODE_TYPE_NAME AS inspect_group,
+	 si.ITEM AS inspect_group_list, si.CONTENT, i.Alter_measure
+	FROM InspectionList i 
+		INNER JOIN Standards st ON i.Inspect_group = st.CODE_TYPE_NO
+	    INNER JOIN StandardIns si ON i.Inspect_group_list = si.ID
+	WHERE Cda_mapping = #{Cda_mapping}
+	GROUP BY i.id;
+	</select>
+	
+	<insert id="insertEva" parameterType="java.util.HashMap">
+		INSERT INTO SecurityEva
+		(CDA_CODE, EVA_DONE_YN, CONTENT, COMMENT, PERIOD)
+		VALUES (#{cda_code}, #{eva_done_yn}, #{content}, #{comment}, #{period})
+	</insert>
+	
+	<insert id="insertNoncon" parameterType="java.util.List">
+		INSERT INTO Nonconfirm(CDA_CODE, NONCON_INS_ID, SOLUTION, NONCON_PERIOD)
+		VALUES 
+		<foreach collection="list" item="item" separator=",">
+			(#{item.cda_code}, #{item.noncon_ins_id}, #{item.solution}, #{item.noncon_period})
+		</foreach>
+		
+	</insert>
+	
+	
+	
+	
 	
 	
 </mapper>
