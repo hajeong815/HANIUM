@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri = "http://www.springframework.org/tags/form" %> 
 
 <html>
    <head>
@@ -16,25 +17,28 @@
    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
    
 <meta charset="UTF-8">
-<title>부적합 보고서 상세 조회</title>
+<title>부적합 보고서 수정</title>
 </head>
 <body>
 	<div>
       <%@include file="../allNav.jsp" %>
    </div>
    
-  	<form role="form" name="readForm" method="post" action="<%=request.getContextPath()%>/report/update" >
-  	<input type="text" value="${itemList.bno }">
-   	
    <div class="container">
          <header>
-            <h3>부적합 보고서 상세 조회</h3>
+            <h3>부적합 보고서 수정</h3>
          </header>
          <hr />
          
+		<form:hidden path="bno" />
+		<input type="hidden" name="mode" />
+
+
+
+         
 	<div class="input-group" style="height:30px;">
 		<span class="input-group-addon" id="basic-addon1"><b>CDA 유형</b></span>
-			<input type="text"  id="cda_type" name="cda_type" value="${itemList.cda_type}" style="margin-right:15px; width:100px; height:30px" readonly >
+			<form:input path="cda_type"  id="cda_type" name="cda_type" value="${itemList.cda_type}" style="margin-right:15px; width:100px; height:30px" readonly >
 				
 		<span class="input-group-addon" id="basic-addon1" ><b>CDA 코드</b></span>		
 			<input type="text" id="cda_code" style="width:200px; height:30px" value="${itemList.cda_code}" readonly >				
@@ -56,21 +60,20 @@
 				
 
 	  <span class="input-group-addon" id="basic-addon1" ><b>조치 내용</b></span>
-	  		<textarea class="form-control" name="alter_measure" aria-describedby="basic-addon1" style="width:440px; height:200px; overflow: scroll; word-wrap: break-word;" >${itemList.measure_content}</textarea>
+	  		<textarea class="form-control" name="measure_content" aria-describedby="basic-addon1" style="width:440px; height:200px; overflow: scroll; word-wrap: break-word;" >${itemList.measure_content}</textarea>
 	</div>
 	
 	<div class="modal-footer">
        <a href="/controller/report/list" class="btn btn-secondary">목록</a>
        <a href="/controller/report/update" class="btn btn-primary">테스트</a>
        <button type="submit" class="btn btn-primary" id="update_btn">수정</button>
+       <td style="text-align: center;"><a href="/controller/report/updateList?bno=${itemList.bno}" class="updatetest">수저어어엉</a><td>	
+       
+     </div>
      </div>
      
-</form>
-
-<script>
-
-
-</script>
-
-</body>
+     </body>
 </html>
+
+
+

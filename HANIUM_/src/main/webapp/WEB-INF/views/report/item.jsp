@@ -23,8 +23,19 @@
       <%@include file="../allNav.jsp" %>
    </div>
    
-   	<form role="form" name="readForm" id="frm" method="post" action="<%=request.getContextPath()%>/report/update" >
-  	<input type="text" value="${itemList.bno }">
+<!-- <%
+
+request.setCharacterEncoding("euc-kr");
+
+String bno = request.getParameter("bno");
+System.out.println(bno);
+System.out.println("bno 출력~~~~~~~~~");
+
+
+%> -->
+   
+  	<form method="post" action="<%=request.getContextPath()%>/report/update">
+			<input type="hidden" name="bno" value="${itemList.bno}" />
   	
    <div class="container">
          <header>
@@ -61,25 +72,14 @@
 	
 	<div class="modal-footer">
        <a href="/controller/report/list" class="btn btn-secondary">목록</a>
-       <a href="/controller/report/update" class="btn btn-primary">테스트</a>
+       <a href="/controller/report/update" id="testUpdate" class="btn btn-primary">테스트</a>
        <button type="submit" class="btn btn-primary" id="update_btn">수정</button>
-       <td style="text-align: center;"><a href="/controller/report/updateList?bno=${itemList.bno}" class="updatetest">수저어어엉</a><td>	
        
      </div>
      </div>
 </form>
 
 <script>
-$(document).ready(function(){
-	var formObj = $("form[name='readForm']");
-
-	$(".update_btn").on("click", function(){
-		formObj.attr("action", "/controller/report/update");
-		formObj.attr("method", "post");
-		formObj.submit();				
-	})
-	
-})
 
 
 

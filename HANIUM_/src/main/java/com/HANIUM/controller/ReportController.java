@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.activation.CommandMap;
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -69,29 +70,30 @@ private static final Logger logger = LoggerFactory.getLogger(ReportController.cl
 	}
 		
 		//보고서 상세 조회
-		@RequestMapping(value="/item", method=RequestMethod.GET)
-		public String getBoardContent(@RequestParam("bno") int bno, ReportVO reportVO, Model model) throws Exception {
+		@RequestMapping(value="/item", method = {RequestMethod.GET, RequestMethod.POST})
+		public String getBoardContent(@RequestParam("bno") int bno, @ModelAttribute("reportVO") ReportVO reportVO, Model model) throws Exception {
 			
-			logger.info("::::::::::item List::::::::::");		
-			model.addAttribute("itemList", service.read(bno));
+			logger.info("::::::::::item List::::::::::");			
+
+			//model.addAttribute("itemList", service.read(bno));
+			model.addAttribute("itemList", service.read(reportVO.getBno()));
+			service.read(bno);
 			
 			return "report/item";		
 		}
 		
 		
 		// 보고서 수정
-		@RequestMapping(value = "/update", method = RequestMethod.POST)
-		public String update(@RequestParam("bno") int bno, ReportVO reportVO, Model model) throws Exception{
-			logger.info("update");
+		@RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
+		public String update(ReportVO reportVO) throws Exception{
+			logger.info("::::::::::::update::::::::::::");	
+			logger.info(reportVO.toString());
 			
-			model.addAttribute("update", service.read(bno));
+			service.update(reportVO);
 			
-			service.update(reportVO);;
-			
-			return "redirect:/board/list";
+			return "redirect:/report/list";
 		}
-		
-		
+
 
 		// 보고서 삭제
 		@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
@@ -103,7 +105,16 @@ private static final Logger logger = LoggerFactory.getLogger(ReportController.cl
 			return "redirect:/report/list";
 		}
 		
+		
+		@RequestMapping(value = "/editForm", method = RequestMethod.GET)
+		public String editForm(@RequestParam("bno") int bno, @RequestParam("mode") String mode, Model model) throws Exception {
 
-	
-	
+			model.addAttribute("boardContent", service.read(bno));
+			model.addAttribute("mode", mode);
+			model.addAttribute("reportVO", new ReportVO());
+			return "report/editForm";
+		}
+
+		
+
 }

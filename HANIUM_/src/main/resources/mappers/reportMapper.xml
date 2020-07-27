@@ -50,7 +50,7 @@
 		 WHERE bno = #{bno}
 	</update>
 	
-	<update id="update" parameterType="com.HANIUM.vo.ReportVO">
+	<update id="updatedfsd" parameterType="com.HANIUM.vo.ReportVO">
 
 		   UPDATE ReportList
 		   SET period = #{period}
@@ -59,6 +59,19 @@
 		   WHERE
 		         bno=#{bno}
 	</update>
+	
+	
+	<update id="update" parameterType="com.HANIUM.vo.ReportVO" >
+
+		   UPDATE ReportList
+		   SET period = #{period}
+		   		,content = #{content}
+		   		,measure_content = #{measure_content}
+		   WHERE
+		         bno = #{bno}
+	</update>
+	
+	
 	
 	<delete id="delete" parameterType="int">
 		DELETE 

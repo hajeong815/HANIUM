@@ -122,16 +122,14 @@
 		             <c:forEach items="${list}" var = "list">
 		             		             
 		                <tr>
-		                    <td id="id" name="id" style="text-align: center;"><c:out value="${list.bno}" /></td>
-							<td style="text-align: center;"><c:out value="${list.period}" /></td>
+		                    <td id="bno" name="bno" style="text-align: center;"><c:out value="${list.bno}" /></td>
+							<td style="text-align: center;"><c:out value="${list.cda_type}" /></td>
 							<td style="text-align: center;"><c:out value="${list.cda_code}" /></td>
 							<td id="cda_name" style="text-align: center;"><c:out value="${list.cda_name}" /></td>
 							<td><c:out value="${list.content}" /></td>
 							<td><c:out value="${list.measure_content}" /></td>						
-							<td style="text-align: center;"><a href="" class="itemlistlink">${list.period}</a><td>	
-							
-							<td style="text-align: center;"><a href="/controller/report/item?bno=${list.bno}"  >조회</a></td>						
-							
+							<td style="text-align: center;"><c:out value="${list.period}" /><td>								
+							<td style="text-align: center;"><a href="/controller/report/item?bno=${list.bno}"  >조회</a></td>													
 							<td style="text-align: center;"><a href="/controller/report/delete?bno=${list.bno}" class="delete_btn">삭제</a><td>							
 
 
@@ -205,7 +203,8 @@ $(document).ready(function(){
 			formObj.attr("method", "post");
 			formObj.submit();
 			}
-	})
+	})	
+	
 })
 
 
@@ -223,50 +222,6 @@ $(document).on('click', '#btnSearch', function(e){
 
 });	
 
-
-$(".itemlistlink").click(function(){ 
-	
-	var str = ""
-	var tdArr = new Array();	
-	var checkBtn = $(this);
-	
-	var tr = checkBtn.parent().parent();
-	var td = tr.children();
-	
-	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-	
-	var no = td.eq(0).text();
-	var cda_type = td.eq(1).text();
-	var cda_name = td.eq(2).text();
-	var eva_yn = td.eq(3).text();
-	
-	
-	td.each(function(i){	
-		tdArr.push(td.eq(i).text());
-	});
-	
-	console.log("배열에 담긴 값 : "+tdArr);
-	
-	str +=	" * 클릭된 Row의 td값 = No. : <font color='red'>" + no + "</font>" +
-			", cda_type : <font color='red'>" + cda_type + "</font>" +
-			", cda_name : <font color='red'>" + cda_name + "</font>" +
-			", eva_yn : <font color='red'>" + eva_yn + "</font>";		
-	
-	$("#ex2_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());		
-	$("#ex2_Result2").html(str);
-
-	var url = "${pageContext.request.contextPath}/report/list";
-	url = url + "?cda_name=" + $('#cda_name').val();
-	
-	location.href = url;
-	console.log(url);
-	
-	alert(td.eq(2).text());	
-});
-
-
-
-	
 
 	
 </script> 
