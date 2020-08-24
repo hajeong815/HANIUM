@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportMapper">
 
-	 <select id="list" resultType="com.HANIUM.vo.ReportVO" >
+	 <!-- <select id="lists" resultType="com.HANIUM.vo.ReportVO" >
 		SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
 			
 		FROM ReportList
@@ -16,17 +16,39 @@
 	          AND measure_content like CONCAT('%', "#{measure_content}", '%')
 	      </if>
       </trim>
+	</select>  -->
+	
+	<select id="getReportList" resultType="com.HANIUM.vo.NonconfirmResultVO" >
+		SELECT n.id, d.CDA_TYPE as cda_type, n.CDA_CODE as cda_code, d.DA_NAME as cda_name, 
+			   si.CONTENT as content, n.SOLUTION as solution, n.NONCON_PERIOD as period
+		FROM Nonconfirm n
+			INNER JOIN DAList d ON n.CDA_CODE = d.DA_CODE					    
+		    INNER JOIN InspectionList i ON n.NONCON_INS_ID = i.id
+		    INNER JOIN StandardIns si ON i.Inspect_group_list = si.ID
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+	      <if test="cda_type != '' and cda_type != null ">
+	      		cda_type = #{cda_type}
+	      </if>
+	      <if test="cda_code != '' and cda_code != null ">
+	          AND cda_code = #{cda_code}
+	      </if>
+	      <if test="period != '' and period != null ">
+	          AND n.NONCON_PERIOD like CONCAT('%', #{period}, '%')
+	      </if>
+	      <if test="content != '' and content != null ">
+	          AND si.CONTENT like CONCAT('%', #{content}, '%')
+	      </if>
+	      <if test="solution != '' and solution != null ">
+	          AND n.SOLUTION like CONCAT('%', #{solution}, '%')
+	      </if>
+      	</trim>	
+      	GROUP BY n.id;
 	</select>
 	
-	<!-- 
-	<select id="list" resultType="com.HANIUM.vo.ReportVO" parameterType="java.util.HashMap">
-		SELECT id, CDA_CODE, NONCON_INS_ID, SOLUTION, NONCON_PERIOD
-			
-		FROM Nonconfirm
-	</select>
-	 -->
-	 
-	<select id="getReportList" resultType="com.HANIUM.vo.ReportVO">
+	<!-- d.CDA_TYPE as cda_type,  d.DA_NAME as cda_name,  INNER JOIN DAList d ON n.CDA_CODE = d.DA_CODE-->
+
+	<!-- 부적합 보고서 상세 검색 --> 
+	<!-- <select id="getReportList" resultType="com.HANIUM.vo.ReportVO">
       SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
       FROM ReportList
       trim <trim prefix="WHERE" prefixOverrides="AND|OR">
@@ -37,31 +59,11 @@
 	          AND measure_content like CONCAT('%', "#{measure_content}", '%')
 	      </if>
       </trim>	 
-   </select>
+   </select>  -->
    
-	
-	<update id="updates" parameterType="com.HANIUM.vo.ReportVO" >
-		UPDATE ReportList
-		   <set> 
-		   	<if test=" period != null and period != ''">period  =  #{period},</if>
-		   	<if test=" content != null and content != ''">content  =  #{content},</if>
-		   	<if test=" measure_content != null and measure_content != ''">measure_content  =  #{measure_content}</if>
-		   </set>
-		 WHERE bno = #{bno}
-	</update>
-	
-	<update id="updatedfsd" parameterType="com.HANIUM.vo.ReportVO">
 
-		   UPDATE ReportList
-		   SET period = #{period}
-		   		,content = #{content}
-		   		,measure_content = # {measure_content}
-		   WHERE
-		         bno=#{bno}
-	</update>
-	
-	
-	<update id="update" parameterType="com.HANIUM.vo.ReportVO" >
+	<!-- 부적합 보고서 상세 수정 -->
+	<!-- <update id="update" parameterType="com.HANIUM.vo.ReportVO" >
 
 		   UPDATE ReportList
 		   SET period = #{period}
@@ -69,32 +71,37 @@
 		   		,measure_content = #{measure_content}
 		   WHERE
 		         bno = #{bno}
+	</update>  -->
+	
+	
+	<!-- 부적합 보고서 상세 수정 -->
+	<update id="update" parameterType="com.HANIUM.vo.NonconfirmResultVO" >
+		UPDATE Nonconfirm n
+		SET n.NONCON_PERIOD = #{period}
+		   	,n.SOLUTION = #{solution}
+		WHERE n.id = #{id}
 	</update>
 	
 	
-	
+	<!--  부적합 보고서 삭제 -->
 	<delete id="delete" parameterType="int">
 		DELETE 
-		  	FROM ReportList
-		 WHERE bno = #{bno}		
+		  	FROM Nonconfirm n
+		 WHERE n.id = #{id}		
 	</delete>
 	
-	<!-- 부적합 보고서 아이템 상세 조회  -->
-	<select id="read" parameterType="int" resultType="com.HANIUM.vo.ReportVO" >
-		SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
 		
-		FROM ReportList
-		WHERE bno = #{bno}
+	<!-- 부적합 보고서 상세 조회  -->
+	<select id="read" parameterType="int" resultType="com.HANIUM.vo.NonconfirmResultVO" >
+		SELECT n.id, d.CDA_TYPE as cda_type, n.CDA_CODE as cda_code, d.DA_NAME as cda_name, 
+			   si.CONTENT as content, n.SOLUTION as solution, n.NONCON_PERIOD as period
+		FROM Nonconfirm n
+			INNER JOIN DAList d ON n.CDA_CODE = d.DA_CODE					    
+		    INNER JOIN InspectionList i ON n.NONCON_INS_ID = i.id
+		    INNER JOIN StandardIns si ON i.Inspect_group_list = si.ID
+		WHERE n.id = #{id}
 	</select>
 	
-
-	
-	<select id="getListModal" resultType="com.HANIUM.vo.ReportVO" parameterType="String">
-		SELECT bno, cda_type, cda_code, cda_name, period, content, measure_content
-			
-		FROM ReportList
-		WHERE cda_name = #{cda_name}
-	</select>
 	
 	
 </mapper>

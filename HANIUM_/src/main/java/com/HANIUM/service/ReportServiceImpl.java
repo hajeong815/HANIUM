@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.HANIUM.common.ReportSearch;
 import com.HANIUM.dao.ReportDAO;
+import com.HANIUM.vo.NonconfirmResultVO;
+import com.HANIUM.vo.NonconfirmVO;
 import com.HANIUM.vo.ReportVO;
 import com.HANIUM.vo.SystemVO;
 
@@ -21,24 +23,21 @@ public class ReportServiceImpl implements ReportService{
 	private ReportDAO dao;
 	
 	@Override
-	public List<ReportVO> list() throws Exception {
-
+	public List<NonconfirmVO> list() throws Exception {
 		return dao.list();
 	}
 	
 	
 	@Override
 
-	public List<ReportVO> getReportList(ReportSearch reportSearch) throws Exception {
-
+	public List<NonconfirmResultVO> getReportList(ReportSearch reportSearch) throws Exception {
 		return dao.getReportList(reportSearch);
 	}
 
 	
 	@Override
-	public ReportVO read(int bno) throws Exception {
-
-		return dao.read(bno);
+	public NonconfirmResultVO read(int id) throws Exception {
+		return dao.read(id);
 	}
 	
 	/*@Override
@@ -48,19 +47,15 @@ public class ReportServiceImpl implements ReportService{
 	}*/
 	
 	@Override
-	public void update(ReportVO reportVO) throws Exception {
-	    dao.update(reportVO);
+	public void update(NonconfirmResultVO nonconfirmResultVO) throws Exception {
+	    dao.update(nonconfirmResultVO);
 	}
 	
 	@Override
-	public void delete(int bno) throws Exception {
-		
-		dao.delete(bno);
+	public void delete(int id) throws Exception {		
+		dao.delete(id);
 	}
 
-	@Override
-	public List<ReportVO> getListModal(String cda_name) throws Exception {
-		return dao.getListModal(cda_name);
-	}
+
 	
 }
