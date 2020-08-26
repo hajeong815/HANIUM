@@ -174,7 +174,6 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <%@include file="itemList.jsp" %>
                   </div>
                   
                 </div>
