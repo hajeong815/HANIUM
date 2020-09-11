@@ -3,11 +3,11 @@ package com.HANIUM.vo;
 public class SystemVO {
 	
 	private int id;
-	private int system_CODE;
+	private String system_CODE;
 	private String system_NAME;
 	private String system_FUNCTION;
-	private int system_SSEP;
-	private int system_COMM;
+	private String system_SSEP;
+	private String system_COMM;
 	private int safety_level_CODE;
 	private int is_CRITICAL;
 	private int func_type_CODE;
@@ -19,10 +19,10 @@ public class SystemVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getSystem_CODE() {
+	public String getSystem_CODE() {
 		return system_CODE;
 	}
-	public void setSystem_CODE(int system_CODE) {
+	public void setSystem_CODE(String system_CODE) {
 		this.system_CODE = system_CODE;
 	}
 	public String getSystem_NAME() {
@@ -37,16 +37,16 @@ public class SystemVO {
 	public void setSystem_FUNCTION(String system_FUNCTION) {
 		this.system_FUNCTION = system_FUNCTION;
 	}
-	public int getSystem_SSEP() {
+	public String getSystem_SSEP() {
 		return system_SSEP;
 	}
-	public void setSystem_SSEP(int system_SSEP) {
+	public void setSystem_SSEP(String system_SSEP) {
 		this.system_SSEP = system_SSEP;
 	}
-	public int getSystem_COMM() {
+	public String getSystem_COMM() {
 		return system_COMM;
 	}
-	public void setSystem_COMM(int system_COMM) {
+	public void setSystem_COMM(String system_COMM) {
 		this.system_COMM = system_COMM;
 	}
 	public int getSafety_level_CODE() {

@@ -22,4 +22,10 @@ public class SystemDAOImpl implements SystemDAO{
 
 	}
 
+	@Override
+	public int insertSystem(SystemVO systemVO) throws Exception {
+		return sqlSession.insert("systemMapper.systemInsert", systemVO);
+		
+	}
+
 }

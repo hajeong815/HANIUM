@@ -6,5 +6,7 @@ import com.HANIUM.vo.SystemVO;
 
 public interface SystemService {
 	public List<SystemVO> list() throws Exception;
+	
+	public void systemInsert(SystemVO systemVO) throws Exception;
 
 }

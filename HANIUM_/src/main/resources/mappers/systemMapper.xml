@@ -9,4 +9,10 @@
 		FROM SystemList;
 	</select>
 	
+	<insert id="systemInsert">
+	
+		INSERT INTO SystemList (`system_CODE`, `system_NAME`, `system_FUNCTION`, `system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`)
+		VALUES (#{system_CODE}, #{system_NAME}, #{system_FUNCTION}, #{system_SSEP}, #{system_COMM}, #{safety_level_CODE}, #{is_CRITICAL}, #{func_type_CODE});
+	</insert>
+	
 </mapper>

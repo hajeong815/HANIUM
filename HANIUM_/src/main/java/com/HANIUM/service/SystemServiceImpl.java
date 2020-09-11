@@ -21,4 +21,10 @@ public class SystemServiceImpl implements SystemService{
 
 		return dao.list();
 	}
+
+	@Override
+	public void systemInsert(SystemVO systemVO) throws Exception {
+		// TODO Auto-generated method stub
+		dao.insertSystem(systemVO);
+	}
 }

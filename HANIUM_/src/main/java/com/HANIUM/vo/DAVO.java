@@ -3,20 +3,21 @@ package com.HANIUM.vo;
 public class DAVO {
 	
 	private int id;
-	private int CRI_SYSTEM_NO;
+	private String CRI_SYSTEM_NO;
+	private int SSEP_OR_NOT_CODE;
 	private String DA_CODE;
 	private String DA_NAME;
 	private String DA_FUNCTION;
-	private int DA_COMM;
+	private String DA_COMM;
 	private int DA_SUPPORT_FUNC;
-	private int DA_FUNC_TYPE_CODE;
+	private String DA_FUNC_TYPE_CODE;
 	private int SAFETY_LEVEL_CODE;
 	private int DIGITAL_OR_NOT_CODE;
-	private int CYBER_ATTACK_CODE;
-	private int COMM_FUNC_CODE;
-	private int STORAGE_CODE;
-	private int HMI_CON_CODE;
-	private int HMI_CHANGE_CODE;
+	private String CYBER_ATTACK_CODE;
+	private String COMM_FUNC_CODE;
+	private String STORAGE_CODE;
+	private String HMI_CON_CODE;
+	private String HMI_CHANGE_CODE;
 	private int IS_CRITICAL;
 	private String CDA_TYPE;
 	
@@ -29,22 +30,22 @@ public class DAVO {
 		this.id = id;
 	}
 	
-	public int getCRI_SYSTEM_NO() {
+	public String getCRI_SYSTEM_NO() {
 		return CRI_SYSTEM_NO;
 	}
 	
-	public void setCRI_SYSTEM_NO(int CRI_SYSTEM_NO) {
+	public void setCRI_SYSTEM_NO(String CRI_SYSTEM_NO) {
 		this.CRI_SYSTEM_NO = CRI_SYSTEM_NO;
 	}
 	
 	
 	
 	
-	public int getCOMM_FUNC_CODE() {
+	public String getCOMM_FUNC_CODE() {
 		return COMM_FUNC_CODE;
 	}
 
-	public void setCOMM_FUNC_CODE(int COMM_FUNC_CODE) {
+	public void setCOMM_FUNC_CODE(String COMM_FUNC_CODE) {
 		this.COMM_FUNC_CODE = COMM_FUNC_CODE;
 	}
 	
@@ -74,11 +75,11 @@ public class DAVO {
 		this.DA_FUNCTION = DA_FUNCTION;
 	}
 
-	public int getDA_COMM() {
+	public String getDA_COMM() {
 		return DA_COMM;
 	}
 
-	public void setDA_COMM(int DA_COMM) {
+	public void setDA_COMM(String DA_COMM) {
 		this.DA_COMM = DA_COMM;
 	}
 
@@ -90,11 +91,11 @@ public class DAVO {
 		this.DA_SUPPORT_FUNC = DA_SUPPORT_FUNC;
 	}
 
-	public int getDA_FUNC_TYPE_CODE() {
+	public String getDA_FUNC_TYPE_CODE() {
 		return DA_FUNC_TYPE_CODE;
 	}
 
-	public void setDA_FUNC_TYPE_CODE(int DA_FUNC_TYPE_CODE) {
+	public void setDA_FUNC_TYPE_CODE(String DA_FUNC_TYPE_CODE) {
 		this.DA_FUNC_TYPE_CODE = DA_FUNC_TYPE_CODE;
 	}
 
@@ -114,35 +115,35 @@ public class DAVO {
 		this.DIGITAL_OR_NOT_CODE = DIGITAL_OR_NOT_CODE;
 	}
 
-	public int getCYBER_ATTACK_CODE() {
+	public String getCYBER_ATTACK_CODE() {
 		return CYBER_ATTACK_CODE;
 	}
 
-	public void setCYBER_ATTACK_CODE(int CYBER_ATTACK_CODE) {
+	public void setCYBER_ATTACK_CODE(String CYBER_ATTACK_CODE) {
 		this.CYBER_ATTACK_CODE = CYBER_ATTACK_CODE;
 	}
 
-	public int getSTORAGE_CODE() {
+	public String getSTORAGE_CODE() {
 		return STORAGE_CODE;
 	}
 
-	public void setSTORAGE_CODE(int STORAGE_CODE) {
+	public void setSTORAGE_CODE(String STORAGE_CODE) {
 		this.STORAGE_CODE = STORAGE_CODE;
 	}
 
-	public int getHMI_CON_CODE() {
+	public String getHMI_CON_CODE() {
 		return HMI_CON_CODE;
 	}
 
-	public void setHMI_CON_CODE(int HMI_CON_CODE) {
+	public void setHMI_CON_CODE(String HMI_CON_CODE) {
 		this.HMI_CON_CODE = HMI_CON_CODE;
 	}
 
-	public int getHMI_CHANGE_CODE() {
+	public String getHMI_CHANGE_CODE() {
 		return HMI_CHANGE_CODE;
 	}
 
-	public void setHMI_CHANGE_CODE(int HMI_CHANGE_CODE) {
+	public void setHMI_CHANGE_CODE(String HMI_CHANGE_CODE) {
 		this.HMI_CHANGE_CODE = HMI_CHANGE_CODE;
 	}
 
@@ -159,6 +160,14 @@ public class DAVO {
 	}
 	public void setCDA_TYPE(String CDA_TYPE) {
 		this.CDA_TYPE = CDA_TYPE;
+	}
+
+	public int getSSEP_OR_NOT_CODE() {
+		return SSEP_OR_NOT_CODE;
+	}
+
+	public void setSSEP_OR_NOT_CODE(int SSEP_OR_NOT_CODE) {
+		this.SSEP_OR_NOT_CODE = SSEP_OR_NOT_CODE;
 	}
 	
 

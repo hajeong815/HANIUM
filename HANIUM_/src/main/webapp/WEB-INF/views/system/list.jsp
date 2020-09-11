@@ -86,7 +86,7 @@
 				<form role="form" method="get">
 					<table class="table table-hover">
 						<tr>
-						<th>no</th><th>시스템 코드</th><th>시스템명</th><th>시스템 구분</th>
+						<th>no</th><th>시스템 코드</th><th>시스템명</th><th>시스템 기능</th><th>시스템 구분</th>
 						<th>기능유형</th>
 						</tr>
 						
@@ -95,8 +95,17 @@
 								<td><c:out value="${list.id}" /></td>
 								<td><c:out value="${list.system_CODE}" /></td>
 								<td><c:out value="${list.system_NAME}" /></td>
-								<td><c:out value="${list.is_CRITICAL}" /></td>
-								<td><c:out value="${list.func_type_CODE}" /></td>
+								<td><c:out value="${list.system_FUNCTION}" /></td>
+								<td><c:choose>
+										<c:when test="${list.is_CRITICAL eq 1}">필수시스템</c:when>
+										<c:when test="${list.is_CRITICAL eq 0}">non-필수시스템</c:when>
+									</c:choose>
+								</td>
+								<td><c:choose>
+										<c:when test="${list.func_type_CODE eq 1}">안전</c:when>
+										<c:when test="${list.func_type_CODE eq 0}">비안전</c:when>
+									</c:choose>
+								</td>
 							</tr>
 						</c:forEach>
 						
@@ -136,16 +145,10 @@
 					      <div class="modal-header">
 	  							<h5 class="modal-title" id="exampleModalLabel">산업제어시스템 등록</h5>
 	  							
-	  							
 							      <div class="modal-body">
 							        <%@include file="systemClassify.jsp" %>
 							      </div>
-							      
-							      <div class="modal-footer">
-					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					        		<button type="button" class="btn btn-primary">등록</button>
-					      		  </div>
-					      		  
+
 	  						</div>
 						</div>
 						</div>

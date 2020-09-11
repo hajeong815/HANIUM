@@ -10,6 +10,13 @@
 	<div  class="input-group" style="padding:5px;">
 		<span class="input-group-addon" id="basic-addon1">필수 시스템 코드</span>
 			<select id="ifDigital" name="if_Digital" style="height:30px; width:250px;">
+			
+					<option>EA</option>
+					<option>AC</option>
+					<option>ST</option>
+					<option>SO</option>
+					<option>RO</option>
+					<option>ID</option>
 						
 						<!-- DB의 systemList 테이블의 필수시스템 코드 가져와 <option>으로 나오도록 -->
 						
@@ -18,6 +25,12 @@
 		<span class="input-group-addon" id="basic-addon1">필수 시스템명</span>
 			<select id="ifDigital" name="if_Digital" style="height:30px; width:250px;">
 						
+						<option>발전소정보계통</option>
+						<option>자동지진정보계통</option>
+						<option>지진감시계통</option>
+						<option>방사선감시계통</option>
+						<option>침입탐지계통</option>
+						<option>출입통제계통</option>
 						<!-- DB의 systemList 테이블의 필수시스템명을 가져와 <option>으로 나오도록 or 사용자가 선택한 필수시스템코드를 받아서 DB에 필수시스템코드가
 							같은 필수시스템명만 출력하도록 쿼리 -->
 						
@@ -86,6 +99,18 @@
 	
 			<span class="input-group-addon" id="basic-addon1">통신 연결자산</span>
 				<select style="height:50px; width:310px">
+				
+					<option>MCR OIS</option>
+					<option>Data Server</option>
+					<option>System Cabinet</option>
+					<option>출입통제서버</option>
+					<option>지문서버</option>
+					<option>지문리더기</option>
+					<option>출입통제콘솔</option>
+					<option>ASTS MTP</option>
+					<option>ASTS System Cabinet</option>
+					<option>ASTS Panel</option>
+					
 				<!-- 기 입력된 디지털자산/디지털자산명 확인 후 선택(DB에 미리 입력되어 있는 디지털자산명 불러오기 -->
 				</select>
 				
@@ -141,6 +166,17 @@
 					
 			<span class="input-group-addon" id="basic-addon1">지원가능 자산</span>
 				<select style="height:60px; width:300px">
+				
+					<option>MCR OIS</option>
+					<option>Data Server</option>
+					<option>System Cabinet</option>
+					<option>출입통제서버</option>
+					<option>지문서버</option>
+					<option>지문리더기</option>
+					<option>출입통제콘솔</option>
+					<option>ASTS MTP</option>
+					<option>ASTS System Cabinet</option>
+					<option>ASTS Panel</option>
 				<!-- 기 입력된 디지털자산/디지털자산명 확인 후 선택(DB에 미리 입력되어 있는 디지털자산명 불러오기 -->
 				</select>
 					

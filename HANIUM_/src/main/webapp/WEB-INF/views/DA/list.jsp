@@ -120,13 +120,29 @@
 				<form role="form" method="get">
 					<table class="table table-hover">
 						<tr>
-						<th>디지털자산 코드</th><th>디지털자산명</th><th>디지털자산 구분</th><th>디지털자산 기능 유형</th>
-						<th>디지털 여부</th><th>필수디지털자산 유형</th>
+						<th>no</th><th>디지털자산 코드</th><th>디지털자산명</th><th>디지털자산 기능</th>
+						<th style="width: 180px;">디지털자산 기능 유형</th>
+						<th>디지털 여부</th><th style="width: 150px;">디지털자산 유형</th>
 						
 						</tr>
 						
 						<c:forEach items="${list}" var = "list">
 							<tr>
+								<td><c:out value="${list.id}" /></td>
+								<td><c:out value="${list.DA_CODE}" /></td>
+								<td><c:out value="${list.DA_NAME}" /></td>
+								<td><c:out value="${list.DA_FUNCTION}" /></td>
+								<td><c:out value="${list.DA_FUNC_TYPE_CODE}" /></td>
+								<td><c:choose>
+										<c:when test="${list.SAFETY_LEVEL_CODE eq 1}">안전</c:when>
+										<c:when test="${list.SAFETY_LEVEL_CODE eq 0}">비안전</c:when>
+									</c:choose>
+								</td>
+								<td><c:choose>
+										<c:when test="${list.IS_CRITICAL eq 1}">필수디지털자산</c:when>
+										<c:when test="${list.IS_CRITICAL eq 0}">NON-필수디지털자산</c:when>
+									</c:choose>
+								</td>
 							</tr>
 						</c:forEach>
 						
