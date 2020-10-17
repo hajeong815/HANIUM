@@ -90,9 +90,9 @@
 						<th>기능유형</th>
 						</tr>
 						
-						<c:forEach items="${list}" var = "list">
+						<c:forEach items="${list}" var = "list" varStatus="status">
 							<tr>
-								<td><c:out value="${list.id}" /></td>
+								<td><c:out value="${status.index + 1}" /></td>
 								<td><c:out value="${list.system_CODE}" /></td>
 								<td><c:out value="${list.system_NAME}" /></td>
 								<td><c:out value="${list.system_FUNCTION}" /></td>
@@ -102,8 +102,8 @@
 									</c:choose>
 								</td>
 								<td><c:choose>
-										<c:when test="${list.func_type_CODE eq 1}">안전</c:when>
-										<c:when test="${list.func_type_CODE eq 0}">비안전</c:when>
+										<c:when test="${list.safety_level_CODE eq 1}">안전</c:when>
+										<c:when test="${list.safety_level_CODE eq 0}">비안전</c:when>
 									</c:choose>
 								</td>
 							</tr>

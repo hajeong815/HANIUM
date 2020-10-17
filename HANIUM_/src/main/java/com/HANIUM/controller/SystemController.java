@@ -14,7 +14,6 @@ import com.HANIUM.service.SystemService;
 import com.HANIUM.vo.SystemVO;
 
 @Controller
-@RequestMapping("/system/*")
 public class SystemController {
 	
 private static final Logger logger = LoggerFactory.getLogger(SystemController.class);
@@ -23,7 +22,7 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 	SystemService service;
 
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "system/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		logger.info("list");
 		
@@ -34,23 +33,26 @@ private static final Logger logger = LoggerFactory.getLogger(SystemController.cl
 		
 	}
 	
-	@RequestMapping(value = "/classify", method = RequestMethod.GET)
-	public String classifylist(Model model) throws Exception{
-		logger.info("list");
-		
-		model.addAttribute("list",service.list());
-		
-		
-		return "system/classify";
-		
-	}
+	/*
+	 * @RequestMapping(value = "/classify", method = RequestMethod.GET) public
+	 * String classifylist(Model model) throws Exception{ logger.info("list");
+	 * 
+	 * model.addAttribute("list",service.list());
+	 * 
+	 * 
+	 * return "system/classify";
+	 * 
+	 * }
+	 */
 	
-	@RequestMapping(value = "/classify", method = RequestMethod.POST)
+	@RequestMapping(value = "/system/classify", method = RequestMethod.POST)
 	public String systemInsert(SystemVO systemVO) throws Exception {
 		logger.info("system insrt and classify");
 		
-		service.systemInsert(systemVO);
+		SystemVO classified = service.systemClassify(systemVO);
+		service.systemInsert(classified);
 		
-		return "system/list";
+		return "redirect:/system/list";
+		
 	}
 }

@@ -79,7 +79,7 @@
 		                <th class="col-md-2">CDA 유형 / 코드</th>
 		                <th class="col-md-5">필수디지털자산명</th>
 		                <th class="col-md-1.5">보안성 평가 여부</th>
-		                <th class="col-md-1.5">조회 / 등록</th>
+		                <th class="col-md-1.5" style="width:80px;">완료여부 / 등록</th>
 		             </tr>
 		             
 		             <c:forEach items="${list}" var = "list">
@@ -88,7 +88,7 @@
 							<td><c:out value="${list.CDA_TYPE}" /> / <c:out value="${list.DA_CODE}" /></td>
 							<td><c:out value="${list.DA_NAME}" /></td>
 							<td><c:out value="${list.DA_FUNCTION}" /></td>
-							<td><a href="itemList?cda_type=${list.CDA_TYPE}&cda_name=${list.DA_NAME}&cda_code=${list.DA_CODE}" >조회</a>
+							<td><a href="itemList?cda_type=${list.CDA_TYPE}&cda_name=${list.DA_NAME}&cda_code=${list.DA_CODE}" >완료</a>
 								/
 								<a href="<%=request.getContextPath()%>/security/insertForm?id=${list.id}">등록</a><td>
 
