@@ -31,7 +31,7 @@
          <hr />
          
           <form name="readForm" role="form" method="post">
-					<input type="hidden"  value="${ReportVO.bno}" />
+					<input type="hidden"  value="${NonconfirmVO.id}" />
 			</form> 
 	   
          <!-- 검색창 -->
@@ -65,7 +65,7 @@
 	               
 	               <span class="input-group-addon" id="basic-addon1">필수디지털자산명</span>
 	               <div class="btn-group" >
-	                  <select id="cda_name" name=""cda_name" style="height:30px; width:auto">
+	                  <select id="cda_name" name="cda_name" style="height:30px; width:auto">
 	                    <option value="" selected>선택</option>
 	                    <c:forEach var="code" items="${list}">
 	                          <option value="${code.cda_name}">${code.cda_name}</option>
@@ -75,14 +75,10 @@
 	      	</div>
 	      	
 	      	<div class="input-group" style="margin-top:20px">
-	      		   <span class="input-group-addon" id="basic-addon1">조치 기간</span>
+	      		   <span class="input-group-addon" id="basic-addon1">조치 기간(M)</span>
 	               <div class="btn-group"> 
-						<select id="period" name="period"  style="height:30px; width:auto; margin-right:50px">
-		                     <option value="" selected>선택</option>
-		                     <c:forEach var="code" items="${list}">
-		                          <option value="${code.period}">${code.period}</option>
-		                     </c:forEach>	                      
-	                	 </select>	      		   
+						<input type="text" id="period" name="period" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style="background-color:ffffff; border:1px solid; height:30px; width:50px; margin-right:50px" placeholder=""></input>
+						      		   
 	               </div>
 	              
 	               
@@ -93,7 +89,7 @@
 	               
 	               <span class="input-group-addon" id="basic-addon1">조치 내용</span>
 	               <div class="btn-group">         
-	                    <input type="text" id="measure_content" name="measure_content" value="${search.measure_content}" style="background-color:ffffff; border:1px solid; height:30px; width:250px;" placeholder="내용을 입력하세요."></input>
+	                    <input type="text" id="solution" name="solution" style="background-color:ffffff; border:1px solid; height:30px; width:250px;" placeholder="내용을 입력하세요."></input>
 	               </div>
 	               
 	     </div>
@@ -107,32 +103,30 @@
 		      <section id="container">
 		          <table class="table table-hover" id="listContent" style="font-size:1em">
 		             <tr style="font-size:1em">
-		             	<th>no</th>
+		             	<th class="col-md-0.5" style="text-align: center;">no</th>
 		                <th class="col-md-1.5" style="text-align: center;">CDA 유형</th>
-		                <th class="col-md-2.5" style="text-align: center;">CDA 코드</th>
-		                <th class="col-md-3" style="text-align: center;">필수디지털자산명</th>
+		                <th class="col-md-1.5" style="text-align: center;">CDA 코드</th>
 		                <th class="col-md-3" style="text-align: center;">부적합 내용</th>
 		                <th class="col-md-3" style="text-align: center;">조치 내용</th>
-		                <th class="col-md-1" style="text-align: center;">기간</th>
-		                <th class="col-md-1" style="text-align: center;">조회 </th>
-		                <th class="col-md-1" style="text-align: center;">삭제 </th>
+		                <th class="col-md-1" style="text-align: center;">기간(M)</th>
+		                <th class="col-md-0.5" style="text-align: center;">조회 </th>
+		                <th class="col-md-0.5" style="text-align: center;">삭제 </th>
+		                
 		                
 		             </tr>
 		             
 		             <c:forEach items="${list}" var = "list">
 		             		             
 		                <tr>
-		                    <td id="id" name="id" style="text-align: center;"><c:out value="${list.bno}" /></td>
-							<td style="text-align: center;"><c:out value="${list.period}" /></td>
+		                    <td id="id" name="id" style="text-align: center;"><c:out value="${list.id}" /></td>
+							<td style="text-align: center;"><c:out value="${list.cda_type}" /></td>
 							<td style="text-align: center;"><c:out value="${list.cda_code}" /></td>
-							<td id="cda_name" style="text-align: center;"><c:out value="${list.cda_name}" /></td>
+							<!-- <td id="cda_name" style="text-align: center;"><c:out value="${list.cda_name}" /></td> -->
 							<td><c:out value="${list.content}" /></td>
-							<td><c:out value="${list.measure_content}" /></td>						
-							<td style="text-align: center;"><a href="" class="itemlistlink">${list.period}</a><td>	
-							
-							<td style="text-align: center;"><a href="/controller/report/item?bno=${list.bno}"  >조회</a></td>						
-							
-							<td style="text-align: center;"><a href="/controller/report/delete?bno=${list.bno}" class="delete_btn">삭제</a><td>							
+							<td><c:out value="${list.solution}" /></td>						
+							<td style="text-align: center;"><c:out value="${list.period}" /></td>								
+							<td style="text-align: center;"><a href="/controller/report/item?id=${list.id}" >조회</a></td>													
+							<td style="text-align: center;"><a href="/controller/report/delete?id=${list.id}" class="delete_btn">삭제</a><td>							
 
 
 		                </tr>
@@ -180,20 +174,19 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <%@include file="itemList.jsp" %>
                   </div>
                   
                 </div>
               </div>
             </div>
             
-<c:url var="getListURL" value="/controller/report/list"></c:url>
+<c:url var="getListURL" value="/report/list"></c:url>
 <script>
 
 function fn_contentView(id){
 
 	var url = "${pageContext.request.contextPath}/report/item";
-	url = url + "?bno=" + bno;
+	url = url + "?id=" + id;
 	location.href = url;
 }
 
@@ -205,7 +198,8 @@ $(document).ready(function(){
 			formObj.attr("method", "post");
 			formObj.submit();
 			}
-	})
+	})	
+	
 })
 
 
@@ -215,58 +209,20 @@ $(document).on('click', '#btnSearch', function(e){
 
 	//var url = "${pageContext.request.contextPath}/report/list";
 	var url = "${getListURL}";
-	url = url + "?content=" + $('#content').val();
-	url = url + "&measure_content=" + $('#measure_content').val();
+	url = url + "?cda_type=" + $('#cda_type').val();
+	url = url + "&cda_code=" + $('#cda_code').val();
+	url = url + "&cda_name=" + $('#cda_name').val();
+	url = url + "&period=" + $('#period').val();
+	url = url + "&content=" + $('#content').val();
+	url = url + "&solution=" + $('#solution').val();
+	
+	
 
 	location.href = encodeURI( url);
 	console.log(url);
 
 });	
 
-
-$(".itemlistlink").click(function(){ 
-	
-	var str = ""
-	var tdArr = new Array();	
-	var checkBtn = $(this);
-	
-	var tr = checkBtn.parent().parent();
-	var td = tr.children();
-	
-	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-	
-	var no = td.eq(0).text();
-	var cda_type = td.eq(1).text();
-	var cda_name = td.eq(2).text();
-	var eva_yn = td.eq(3).text();
-	
-	
-	td.each(function(i){	
-		tdArr.push(td.eq(i).text());
-	});
-	
-	console.log("배열에 담긴 값 : "+tdArr);
-	
-	str +=	" * 클릭된 Row의 td값 = No. : <font color='red'>" + no + "</font>" +
-			", cda_type : <font color='red'>" + cda_type + "</font>" +
-			", cda_name : <font color='red'>" + cda_name + "</font>" +
-			", eva_yn : <font color='red'>" + eva_yn + "</font>";		
-	
-	$("#ex2_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());		
-	$("#ex2_Result2").html(str);
-
-	var url = "${pageContext.request.contextPath}/report/list";
-	url = url + "?cda_name=" + $('#cda_name').val();
-	
-	location.href = url;
-	console.log(url);
-	
-	alert(td.eq(2).text());	
-});
-
-
-
-	
 
 	
 </script> 
