@@ -34,7 +34,7 @@ System.out.println("id 출력~~~~~~~~~");
 
 %> -->
    
-  	<form method="post" action="<%=request.getContextPath()%>/report/update">
+  	<form method="post" action="/report/update">
 			<input type="hidden" name="id" value="${itemList.id}" />
   	
    <div class="container">
@@ -71,7 +71,7 @@ System.out.println("id 출력~~~~~~~~~");
 	</div>
 	
 	<div class="modal-footer">
-       <a href="/controller/report/list" class="btn btn-secondary">목록</a>
+       <a href="/report/list" class="btn btn-secondary">목록</a>
        <!-- <a href="/controller/report/update" id="testUpdate" class="btn btn-primary">테스트</a>  -->
        <button type="submit" class="btn btn-primary" id="update_btn">수정</button>
        
