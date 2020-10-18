@@ -49,9 +49,6 @@ public class DAController {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertDA(@RequestParam HashMap<String, Object> paramMap) throws Exception {
-		logger.info("==insertDAinsertDAinsertDAinsertDA===");
-		logger.info("이전의 MAP!!");
-		
 		for(Map.Entry entry : paramMap.entrySet()){
 		     System.out.println(entry.getKey());
 		     System.out.println(entry.getValue());
@@ -74,6 +71,7 @@ public class DAController {
 				IS_CRITICAL = 0;
 			}
 		}
+		
 		// [2] 필수 디지털 자산 분류
 		if (IS_CRITICAL == 1) {
 			CDA_TYPE = daService.classifyCDAType(paramMap);
@@ -82,14 +80,7 @@ public class DAController {
 		paramMap.put("SSEP_OR_NOT_CODE", SSEP_OR_NOT_CODE);
 		paramMap.put("IS_CRITICAL", IS_CRITICAL);
 		paramMap.put("CDA_TYPE", CDA_TYPE);
-		
-		logger.info("바뀐!! PARAMPAM == ");
-		
-		for(Map.Entry entry : paramMap.entrySet()){
-		     System.out.println(entry.getKey());
-		     System.out.println(entry.getValue());
-	    }
-		
+
 		daService.insertDA(paramMap);
 
 		return "redirect:/DA/list";
