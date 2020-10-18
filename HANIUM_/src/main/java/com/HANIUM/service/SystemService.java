@@ -6,7 +6,7 @@ import com.HANIUM.vo.SystemVO;
 
 public interface SystemService {
 	public List<SystemVO> list() throws Exception;
-	
+	public SystemVO getOneBySystem_CODE(String system_CODE) throws Exception;
 	public void systemInsert(SystemVO systemVO) throws Exception;
 	
 	public SystemVO systemClassify(SystemVO systemVO) throws Exception;

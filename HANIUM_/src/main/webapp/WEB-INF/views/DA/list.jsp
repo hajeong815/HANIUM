@@ -175,27 +175,26 @@
   				<!-- 등록버튼(모달창) -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: right;">디지털자산 등록</button>
 				
+				<form method="post" action="<%=request.getContextPath()%>/DA/insert">	
 				<!-- Modal -->
 				<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  				<div class="modal-dialog modal-lg">
 	  					<div class="modal-content">
 					      <div class="modal-header">
 	  							<h5 class="modal-title" id="exampleModalLabel">디지털자산 등록</h5>
-	  							
-	  							
 							      <div class="modal-body">
 							        <%@include file="DAClassify.jsp" %>
 							      </div>
 							      
 							      <div class="modal-footer">
 					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					        		<button type="button" class="btn btn-primary">등록</button>
+					        		<button type="submit" class="btn btn-primary">등록</button>
 					      		  </div>
-					      		  
 	  						</div>
 						</div>
-						</div>
-						</div>
+					</div>
+				</div>
+				</form>
   				
 
 			</nav>		

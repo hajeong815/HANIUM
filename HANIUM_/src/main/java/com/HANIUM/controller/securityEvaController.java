@@ -32,8 +32,6 @@ private static final Logger logger = LoggerFactory.getLogger(securityEvaControll
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
-		logger.info(":::::::securityEva:::::::::");
-		
 		model.addAttribute("list",service.list());
 		
 		return "security/list";
@@ -42,9 +40,6 @@ private static final Logger logger = LoggerFactory.getLogger(securityEvaControll
 	
 	@RequestMapping(value = "/itemList")
 	public String itemList(@RequestParam HashMap<String, Object> paramMap, Model model) throws Exception{
-		logger.info(":::::::securityEva item List:::::::::");
-		logger.info("-----item detailed contents-----" + paramMap.toString());
-		
 		service.item(paramMap);
 		
 		model.addAttribute("list", service.list());
@@ -55,8 +50,6 @@ private static final Logger logger = LoggerFactory.getLogger(securityEvaControll
 	
 	@RequestMapping(value = "/itemList", method = RequestMethod.GET)
 	public String SecurityEvalist(Model model) throws Exception{
-		logger.info(":::::::securityEva:::::::::");
-		
 		model.addAttribute("list",service.getSecurityEva());
 		
 		
@@ -67,8 +60,6 @@ private static final Logger logger = LoggerFactory.getLogger(securityEvaControll
 	
 	@RequestMapping(value="/insertForm")
 	public String securityEvaInsertForm(@RequestParam("id") int id, Model model) {
-		logger.info("::securityEvaInsert");
-		
 		String Cda_mapping = "pc/server";
 		
 		List<InspectionResultVO> iresultvoList = new ArrayList<InspectionResultVO>();
@@ -82,9 +73,6 @@ private static final Logger logger = LoggerFactory.getLogger(securityEvaControll
 	@ResponseBody
 	@RequestMapping(value="/insert")
 	public String securityEvaInsert(@RequestParam HashMap<String, Object> paramMap) {
-		logger.info("::::securityEvaInsert:::");
-		logger.info("param = " + paramMap);
-
 		if (((String) paramMap.get("eva_done_yn")).equals("0")) {
 			JSONArray array = new JSONArray(paramMap.get("noncon_ins_id").toString());
 			List<Object> list = array.toList();
