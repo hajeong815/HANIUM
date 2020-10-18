@@ -10,7 +10,7 @@
 			
 		FROM DAList;
 	</select>
-	
+
 	<insert id="insertDA" parameterType="java.util.HashMap">
 		INSERT INTO DAList
 		(CRI_SYSTEM_NO, SSEP_OR_NOT_CODE, DA_CODE, DA_NAME, DA_FUNCTION, DA_COMM, DA_SUPPORT_FUNC, 
@@ -23,3 +23,22 @@
 	</insert>
 		
 </mapper>
+	
+<!-- 	id int(11) AI PK 
+CRI_SYSTEM_NO varchar(20) 
+SSEP_OR_NOT_CODE int(11) 
+DA_CODE varchar(35) 
+DA_NAME text 
+DA_FUNCTION text 
+DA_COMM text 
+DA_SUPPORT_FUNC int(11) 
+DA_FUNC_TYPE_CODE varchar(50) 
+SAFETY_LEVEL_CODE int(11) 
+DIGITAL_OR_NOT_CODE int(11) 
+CYBER_ATTACK_CODE text 
+COMM_FUNC_CODE varchar(35) 
+STORAGE_CODE varchar(20) 
+HMI_CON_CODE varchar(20) 
+HMI_CHANGE_CODE int(11) 
+IS_CRITICAL int(11) 
+CDA_TYPE -->

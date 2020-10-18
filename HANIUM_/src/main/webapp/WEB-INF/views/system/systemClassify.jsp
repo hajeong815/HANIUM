@@ -15,17 +15,17 @@
 
 	<div  class="input-group" style="padding:5px;">
 		<span class="input-group-addon" id="basic-addon1">시스템 코드</span>
-		<input type="text" class="form-control" aria-describedby="basic-addon1" style="width:260px" name="system_CODE">
+		<input type="text" class="form-control" aria-describedby="basic-addon1" style="width:300px" name="system_CODE" id="system_CODE">
 
 		    
 		<span class="input-group-addon" id="basic-addon1">시스템명</span>
-		<input type="text" class="form-control" aria-describedby="basic-addon1" style="width:260px" name="system_NAME">
+		<input type="text" class="form-control" aria-describedby="basic-addon1" style="width:300px" name="system_NAME" id="system_NAME">
 		
 	</div>
 	
 	<div class="input-group" style="padding:5px;">
 		<span class="input-group-addon" id="basic-addon1">시스템 기능</span>		
-		<input type="text" class="form-control" aria-describedby="basic-addon1" style="width:660px; height:150px" name="system_FUNCTION">
+		<input type="text" class="form-control" aria-describedby="basic-addon1" style="width:700px; height:150px" name="system_FUNCTION" id="system_FUNCTION">
 	</div>	
 
 
@@ -33,35 +33,37 @@
 					  
 			<span class="input-group-addon" id="basic-addon1">안전 등급</span>
 					  
-					  <select style="height:60px; width:100px">
-					  			<option>안전</option>
-					  			<option>비안전</option>
+					  <select style="height:60px; width:100px" name="safety_level_CODE">
+					  			<option value="1">안전</option>
+					  			<option value="0">비안전</option>
 					  			
 					  </select>		
 					  
 			<span class="input-group-addon" id="basic-addon1">통신 연결시스템</span>
 					  
-					  <select style="height:60px; width:100px">
-					  		<option>방사선감시계통</option>
-					  		<option>지진감시계통</option>
-					  		<option>자동지진정지계통</option>
-					  		<option>발전소정보계통</option>
-					  		<option>출입통제계통</option>
-					  		<option>침입탐지계통</option>
+					  <select style="height:60px; width:80px" name="system_COMM">
+					  		<option value="방사선감시계통">방사선감시계통</option>
+					  		<option value="지진감시계통">지진감시계통</option>
+					  		<option value="자동지진정지계통">자동지진정지계통</option>
+					  		<option value="발전소정보계통">발전소정보계통</option>
+					  		<option value="출입통제계통">출입통제계통</option>
+					  		<option value="침입탐지계통">침입탐지계통</option>
+					  		<option value="null">없음</option>
 					  			
 					  			<!-- 기 입력된 시스템코드/시스템명 확인 후 선택 -> DB에 미리 입력되어 있는 시스템명 불러와서 <option> 태그로 보여주기 -->
 					  </select>					  			 
 					
 			<span class="input-group-addon" id="basic-addon1">SSEP 지원시스템</span>
 					  
-					  <select style="height:60px; width:100px">
-					  		<option>원자로냉각재계통</option>
-					  		<option>방사선감시계통</option>
-					  		<option>지진감시계통</option>
-					  		<option>자동지진정지계통</option>
-					  		<option>발전소정보계통</option>
-					  		<option>출입통제계통</option>
-					  		<option>침입탐지계통</option>
+					  <select style="height:60px; width:80px" name="system_SSEP" >
+					  		<option value="원자로냉각재계통">원자로냉각재계통</option>
+					  		<option value="방사선감시계통">방사선감시계통</option>
+					  		<option value="지진감시계통">지진감시계통</option>
+					  		<option value="자동지진정지계통">자동지진정지계통</option>
+					  		<option value="발전소정보계통">발전소정보계통</option>
+					  		<option value="출입통제계통">출입통제계통</option>
+					  		<option value="침입탐지계통">침입탐지계통</option>
+					  		<option value="null">없음</option>
 					  		
 					  			<!-- 기 입력된 시스템코드/시스템명 확인 후 선택 -> DB에 미리 입력되어 있는 시스템명 불러와서 <option> 태그로 보여주기 -->
 					  </select>	
@@ -82,6 +84,14 @@
 					-> 조건1/2/3에 따라 필수시스템으로 구분된 시스템은 '기능유형'이 선택 가능하도록 셀렉트박스 활성화
 			
 			-->
+			
+			<span class="input-group-addon" id="basic-addon1">SSEP 기능유형</span>
+					<select style="height:60px; width:80px" name="func_type_CODE">
+					  		<option value="0">보안</option>
+					  		<option value="1">안전</option>
+					  		<option value="2">비상대응</option>		
+					  			<!-- 기 입력된 시스템코드/시스템명 확인 후 선택 -> DB에 미리 입력되어 있는 시스템명 불러와서 <option> 태그로 보여주기 -->
+					  </select>	
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>

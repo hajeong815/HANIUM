@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.activation.CommandMap;
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ import com.HANIUM.common.ReportSearch;
 import com.HANIUM.common.Search;
 import com.HANIUM.service.ReportService;
 import com.HANIUM.vo.InspectionResultVO;
+import com.HANIUM.vo.NonconfirmResultVO;
+import com.HANIUM.vo.NonconfirmVO;
 import com.HANIUM.vo.ReportVO;
 
 @Controller
@@ -44,19 +47,26 @@ private static final Logger logger = LoggerFactory.getLogger(ReportController.cl
 			, @RequestParam(required=false) String cda_name
 			, @RequestParam(required=false) String period
 			, @RequestParam(required=false) String content
-			, @RequestParam(required=false) String measure_content
-			, @ModelAttribute("search") ReportSearch reportSearch) throws Exception{
+			, @RequestParam(required=false) String solution
+			/*, @ModelAttribute("ReportSearch") ReportSearch reportSearch*/) throws Exception{
 		
 		logger.info(":::::::Report List:::::::::");
 		logger.info("cda_type = " + cda_type + "/ cda_code = " + cda_code
-				+ "/ cda_name = " + cda_name + "/ period = " + period + "/ content = " + content + "/ measure_content = " + measure_content);
+				+ "/ cda_name = " + cda_name + "/ period = " + period + "/ content = " + content + "/ solution = " + solution);
 		
 		// 검색 객체 생성
-		model.addAttribute("search", reportSearch);
+		ReportSearch reportSearch = new ReportSearch();
+		reportSearch.setCda_code(cda_code);
+		reportSearch.setCda_type(cda_type);
+		reportSearch.setCda_name(cda_name);
+		reportSearch.setPeriod(period);
 		reportSearch.setContent(content);
-		reportSearch.setMeasure_content(measure_content);
+		reportSearch.setSolution(solution);
+
+		logger.info(":::::::Report Search:::::::::");
+
 		
-		List<ReportVO> reportList = new ArrayList<ReportVO>();
+		List<NonconfirmResultVO> reportList = new ArrayList<NonconfirmResultVO>();
 		reportList = service.getReportList(reportSearch);
 		model.addAttribute("list", reportList);		
 
@@ -69,41 +79,40 @@ private static final Logger logger = LoggerFactory.getLogger(ReportController.cl
 	}
 		
 		//보고서 상세 조회
-		@RequestMapping(value="/item", method=RequestMethod.GET)
-		public String getBoardContent(@RequestParam("bno") int bno, ReportVO reportVO, Model model) throws Exception {
+		@RequestMapping(value="/item", method = {RequestMethod.GET, RequestMethod.POST})
+		public String getBoardContent(@RequestParam("id") int id, @ModelAttribute("NonconfirmResultVO") NonconfirmResultVO nonconfirmResultVO, Model model) throws Exception {
 			
-			logger.info("::::::::::item List::::::::::");		
-			model.addAttribute("itemList", service.read(bno));
+			logger.info("::::::::::item List::::::::::");			
+
+			//model.addAttribute("itemList", service.read(bno));
+			model.addAttribute("itemList", service.read(nonconfirmResultVO.getId()));
+			service.read(id);
 			
 			return "report/item";		
 		}
 		
 		
 		// 보고서 수정
-		@RequestMapping(value = "/update", method = RequestMethod.POST)
-		public String update(@RequestParam("bno") int bno, ReportVO reportVO, Model model) throws Exception{
-			logger.info("update");
+		@RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
+		public String update(NonconfirmResultVO nonconfirmResultVO) throws Exception{
+			logger.info("::::::::::::update::::::::::::");	
+			logger.info(nonconfirmResultVO.toString());
 			
-			model.addAttribute("update", service.read(bno));
+			service.update(nonconfirmResultVO);
 			
-			service.update(reportVO);;
-			
-			return "redirect:/board/list";
+			return "redirect:/report/list";
 		}
-		
-		
+
 
 		// 보고서 삭제
 		@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
-		public String delete(@RequestParam("bno") int bno, ReportVO reportVO) throws Exception{
+		public String delete(@RequestParam("id") int id, NonconfirmResultVO nonconfirmResultVO) throws Exception{
 			logger.info(":::::::::::::delete:::::::::::::");
 			
-			service.delete(bno);
+			service.delete(id);
 			
 			return "redirect:/report/list";
 		}
 		
 
-	
-	
 }
