@@ -11,4 +11,6 @@ public interface SystemDAO {
 	//insert system
 	public int insertSystem(SystemVO systemVO) throws Exception;
 	
+	public SystemVO getOneBySystem_CODE(String system_CODE) throws Exception;
+	
 }

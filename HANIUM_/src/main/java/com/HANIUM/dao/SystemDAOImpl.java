@@ -28,4 +28,13 @@ public class SystemDAOImpl implements SystemDAO{
 		
 	}
 
+	@Override
+	public SystemVO getOneBySystem_CODE(String system_CODE) throws Exception {
+		
+		System.out.println("===DAOIMPL==");
+		System.out.println(system_CODE);
+		
+		return sqlSession.selectOne("systemMapper.getOne", system_CODE);
+	}
+
 }

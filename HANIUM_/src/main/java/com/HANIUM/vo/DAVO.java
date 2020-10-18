@@ -9,7 +9,7 @@ public class DAVO {
 	private String DA_NAME;
 	private String DA_FUNCTION;
 	private String DA_COMM;
-	private int DA_SUPPORT_FUNC;
+	private String DA_SUPPORT_FUNC;
 	private String DA_FUNC_TYPE_CODE;
 	private int SAFETY_LEVEL_CODE;
 	private int DIGITAL_OR_NOT_CODE;
@@ -83,11 +83,11 @@ public class DAVO {
 		this.DA_COMM = DA_COMM;
 	}
 
-	public int getDA_SUPPORT_FUNC() {
+	public String getDA_SUPPORT_FUNC() {
 		return DA_SUPPORT_FUNC;
 	}
 
-	public void setDA_SUPPORT_FUNC(int DA_SUPPORT_FUNC) {
+	public void setDA_SUPPORT_FUNC(String DA_SUPPORT_FUNC) {
 		this.DA_SUPPORT_FUNC = DA_SUPPORT_FUNC;
 	}
 
