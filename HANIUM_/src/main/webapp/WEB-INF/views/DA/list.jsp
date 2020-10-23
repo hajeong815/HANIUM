@@ -121,14 +121,14 @@
 					<table class="table table-hover">
 						<tr>
 						<th>no</th><th>디지털자산 코드</th><th>디지털자산명</th><th>디지털자산 기능</th>
-						<th style="width: 180px;">디지털자산 기능 유형</th>
-						<th>디지털 여부</th><th style="width: 150px;">디지털자산 유형</th>
+						<th style="width: 80px;">디지털자산 기능 유형</th>
+						<th style="width: 80px;">디지털 여부</th><th style="width: 140px;">CDA 유형</th>
 						
 						</tr>
 						
-						<c:forEach items="${list}" var = "list">
+						<c:forEach items="${list}" var = "list" varStatus="status">
 							<tr>
-								<td><c:out value="${list.id}" /></td>
+								<td><c:out value="${status.index + 1}" /></td>
 								<td><c:out value="${list.DA_CODE}" /></td>
 								<td><c:out value="${list.DA_NAME}" /></td>
 								<td><c:out value="${list.DA_FUNCTION}" /></td>
@@ -138,10 +138,8 @@
 										<c:when test="${list.SAFETY_LEVEL_CODE eq 0}">비안전</c:when>
 									</c:choose>
 								</td>
-								<td><c:choose>
-										<c:when test="${list.IS_CRITICAL eq 1}">필수디지털자산</c:when>
-										<c:when test="${list.IS_CRITICAL eq 0}">NON-필수디지털자산</c:when>
-									</c:choose>
+								<td>
+										<c:out value="${list.CDA_TYPE}" />
 								</td>
 							</tr>
 						</c:forEach>

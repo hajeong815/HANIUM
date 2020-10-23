@@ -30,7 +30,7 @@
       <!-- 검색창 -->
       <div class="jumbotron" style="height: 90%">
       
-      <p>계정관리의 기술적 보안조치가 완료되지 않았습니다. <br> 부적합 보고서 등록을 완료해 주세요.</p>         
+      <p>접근통제 및 인증의 기술적 보안조치가 완료되지 않았습니다. <br> 부적합 보고서 등록을 완료해 주세요.</p>         
 	      <div style="margin-left: 10px;">
 	      	<br>
 	      	<label for="popPeriod">필요 조치 기간 (M)</label>

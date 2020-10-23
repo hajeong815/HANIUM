@@ -59,7 +59,7 @@
 					  <select name="CYBER_ATTACK_CODE" style="height:60px; width:100px">
 					  			<option value="영향 없음">영향 없음</option><!-- '영향 없음'이면 non-CDA -->
 					  			<option value="원자로 정지">원자로 정지</option>
-					  			<option value="원자로 트립 불능">원자로 트립 불능</option>
+					  			<option value="원자로 트립 불능">발전소 출입 불가</option>
 					  			<option value="터빈 정지">터빈 정지</option>
 					  </select>					  			 
 					
@@ -139,7 +139,9 @@
 			<select name="DA_SUPPORT_FUNC" style="height:60px; width:300px">
 				<c:forEach var="da" items="${list}">
 					<option value="${da.DA_NAME}">${da.DA_NAME}</option>
+					
 				</c:forEach>
+				<option value="없음">없음</option>
 		</select>
 	</div>
 </body>

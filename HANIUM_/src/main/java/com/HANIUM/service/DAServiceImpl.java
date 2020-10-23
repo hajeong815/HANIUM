@@ -43,23 +43,23 @@ public class DAServiceImpl implements DAService{
 			return "PC/Server";
 		} else if (STORAGE_CODE.equals("USB") || STORAGE_CODE.equals("메모리카드")) {
 			if (COMM_FUNC_CODE.equals("Ethernet")) {
-				return "TFHF";
+				return "Telecommunication Facilities HF";
 			} else if (COMM_FUNC_CODE.equals("RS-232") || COMM_FUNC_CODE.equals("RS-422") || COMM_FUNC_CODE.equals("RS-485")) {
 				if (HMI_CON_CODE.equals("Local HMI")) {
 					if (HMI_CHANGE_CODE.equals("Control Logic")) {
-						return "TFMF";
+						return "Telecommunication Facilities MF";
 					} else {
-						return "TFLF";
+						return "Telecommunication Facilities LF";
 					}
 				} else if (HMI_CON_CODE.equals("Integral HMI")) {
 					if (HMI_CHANGE_CODE.equals("Firmware")) {
-						return "FFHF";
+						return "Field Facilities HF";
 					} else if (HMI_CON_CODE.equals("운전변수")) {
-						return "FFMF";
+						return "Field Facilities MF";
 					}
 				}
 			}
 		} 
-		return "FFLF";
+		return "Field Facilities LF";
 	}
 }

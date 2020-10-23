@@ -5,20 +5,24 @@
 <mapper namespace="systemMapper">
 
 	<select id="list" resultType="com.HANIUM.vo.SystemVO">
-		SELECT `id`, `system_CODE`, `system_NAME`, `system_FUNCTION`, `system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`
+		SELECT `id`, `system_CODE`, `system_NAME`, `system_FUNCTION`, 
+		`system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`
 		FROM SystemList;
 	</select>
 	
 	<select id="getOne" resultType="com.HANIUM.vo.SystemVO" parameterType="String">
-		SELECT `id`, `system_CODE`, `system_NAME`, `system_FUNCTION`, `system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`
+		SELECT `id`, `system_CODE`, `system_NAME`, `system_FUNCTION`, 
+		`system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`
 		FROM SystemList
 		WHERE system_CODE = #{system_CODE};
 	</select>
 	
 	<insert id="systemInsert">
 	
-		INSERT INTO SystemList (`system_CODE`, `system_NAME`, `system_FUNCTION`, `system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`)
-		VALUES (#{system_CODE}, #{system_NAME}, #{system_FUNCTION}, #{system_SSEP}, #{system_COMM}, #{safety_level_CODE}, #{is_CRITICAL}, #{func_type_CODE});
+		INSERT INTO SystemList (`system_CODE`, `system_NAME`, `system_FUNCTION`, 
+								`system_SSEP`, `system_COMM`, `safety_level_CODE`, `is_CRITICAL`, `func_type_CODE`)
+		VALUES (#{system_CODE}, #{system_NAME}, #{system_FUNCTION}, 
+				#{system_SSEP}, #{system_COMM}, #{safety_level_CODE}, #{is_CRITICAL}, #{func_type_CODE});
 	</insert>
 	
 </mapper>

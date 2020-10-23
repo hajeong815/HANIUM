@@ -67,9 +67,6 @@ public class SystemServiceImpl implements SystemService{
 				systemVO.setIs_CRITICAL(1);
 			}
 		}
-
-		
-
 		
 		return systemVO;
 		

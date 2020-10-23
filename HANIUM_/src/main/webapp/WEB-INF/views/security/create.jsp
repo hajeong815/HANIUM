@@ -44,13 +44,13 @@
    		<div class="jumbotron">
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">CDA 유형</span>
-			  <input type="text" class="form-control" style="width:100px" value="PC/Server" readonly/>
+			  <input type="text" class="form-control" style="width:100px" value="Telecommunication Facilities HF" readonly/>
 			   
 			  <span class="input-group-addon" id="basic-addon1">디지털 자산코드</span>
-			  <input type="text" id="cda_code" class="form-control" style="width:130px" value="RPS 001" readonly/>
+			  <input type="text" id="cda_code" class="form-control" style="width:130px" value="EA-001" readonly/>
 			  
 			  <span class="input-group-addon" id="basic-addon1">필수디지털 자산명</span>
-			  <input type="text" class="form-control" value="RPS Safety System Control Panel #1" readonly/>
+			  <input type="text" class="form-control" value="MCR OIS" readonly/>
 			</div>
       	</div>
 		
